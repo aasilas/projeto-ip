@@ -1,4 +1,4 @@
-package pessoas;
+package dados.pessoas;
 
 public class Pessoa {
 
