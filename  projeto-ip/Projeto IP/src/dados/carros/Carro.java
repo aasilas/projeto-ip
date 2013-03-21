@@ -1,4 +1,4 @@
-package carros;
+package dados.carros;
 
 public class Carro {
 
@@ -7,11 +7,11 @@ public class Carro {
 	private String modelo;
 	private String marca;
 	private String categoria;
-	private String adicionais;
+	private Adicionais adicionais;
 	private double valor;
 	private Veiculos [] quantidade ;
 	
-	public Carro(int porta, String potencia, String modelo, String marca, String categoria, String adicionais, double valor){
+	public Carro(int porta, String potencia, String modelo, String marca, String categoria, Adicionais adicionais, double valor){
 		this.porta = porta;
 		this.modelo = modelo;
 		this.potencia = potencia;
@@ -62,11 +62,11 @@ public class Carro {
 		this.categoria = categoria;
 	}
 
-	public String getAdicionais() {
+	public Adicionais getAdicionais() {
 		return adicionais;
 	}
 
-	public void setAdicionais(String adicionais) {
+	public void setAdicionais(Adicionais adicionais) {
 		this.adicionais = adicionais;
 	}
 

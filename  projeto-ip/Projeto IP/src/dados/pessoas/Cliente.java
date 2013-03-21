@@ -1,6 +1,6 @@
-package pessoas;
+package dados.pessoas;
 
-import carros.Carro;
+import dados.carros.Carro;
 
 public class Cliente extends Pessoa {
 
