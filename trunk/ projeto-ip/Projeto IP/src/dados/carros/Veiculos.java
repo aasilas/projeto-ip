@@ -3,7 +3,9 @@ package dados.carros;
 public class Veiculos {
 	
 	private boolean disponibilidade;
+	
 	private String dataSaida;
+
 	private String dataEntrega;
 	
 	public Veiculos(){

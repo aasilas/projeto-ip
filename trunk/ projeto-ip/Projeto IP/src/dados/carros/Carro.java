@@ -1,7 +1,11 @@
 package dados.carros;
 
-public class Carro {
 
+
+public class Carro{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int porta;
 	private String potencia;
 	private String modelo;
