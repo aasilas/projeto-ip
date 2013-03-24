@@ -3,25 +3,29 @@ package dados.carros.repositorios;
 import dados.carros.Carro;
 import Interfaces.IRepositorioCarro;
 
-public class ListaCarro implements IRepositorioCarro{
+public class ListaCarros implements IRepositorioCarro{
 
 	private Carro carro;
-	private ListaCarro proximo;
+	private ListaCarros proximo;
 	
-	public ListaCarro (Carro carro){
+	public ListaCarros (Carro carro){
 		this.carro = carro;
 		this.proximo = null;
 	}
-	
 	
 	@Override
 	public void inserirCarro(Carro carro) {
 		if(this.carro == null){
 			this.carro = carro;
-			this.proximo = new ListaCarro(null);
+			this.proximo = new ListaCarros(null);
 		}
 		else{
-			this.proximo.inserirCarro(carro);
+			if(this.proximo == null){
+				this.proximo = new ListaCarros(carro); 
+			}
+			else{
+				this.proximo.inserirCarro(carro);
+			}
 		}
 	}
 
@@ -57,7 +61,7 @@ public class ListaCarro implements IRepositorioCarro{
 	@Override
 	public Carro pesquisarCarro(String modelo) {	
 		Carro carroProcurado = null;
-		if(this.carro == null){
+		if(this.carro != null){
 			if(this.carro.getModelo() == modelo){
 				carroProcurado = this.carro;
 			}

@@ -30,5 +30,23 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 		return null;
 	}
 
+	@Override
+	public void removerCarro(String modelo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atualizar(Carro carro) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Carro pesquisarCarro(String modelo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
