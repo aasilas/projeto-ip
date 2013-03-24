@@ -6,9 +6,9 @@ public interface IRepositorioCarro {
 	
 	public void inserirCarro(Carro carro);
 	
-	public void removerCarro();
+	public void removerCarro(String modelo);
 	
-	public void atualizar();
+	public void atualizar(Carro carro);
 	
-	public Carro pesquisarCarro();
+	public Carro pesquisarCarro(String modelo);
 }
