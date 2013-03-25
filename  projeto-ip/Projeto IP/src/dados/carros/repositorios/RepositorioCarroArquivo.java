@@ -1,11 +1,7 @@
 package dados.carros.repositorios;
 
-import dados.carros.Carro;
 import Interfaces.IRepositorioCarro;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
+import dados.carros.Carro;
 
 public class RepositorioCarroArquivo implements IRepositorioCarro{
 
@@ -23,11 +19,6 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 	public void atualizar() {
 	
 		
-	}
-
-	public Carro pesquisarCarro() {
-	
-		return null;
 	}
 
 	@Override
