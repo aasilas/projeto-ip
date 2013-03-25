@@ -66,7 +66,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 		return null;
 	}
 
-	public  gerarPlanilha(String nome, String[] valores){
+	/*public  gerarPlanilha(String nome, String[] valores){
 		
 		Workbook wb = new HSSFWorkbook();
 		Sheet planilha = wb.createSheet();
@@ -82,5 +82,5 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 			arquivoCarro.close();		
 		}catch(Exception e){
 			e.printStackTrace();
-		}
+		}*/
 }
