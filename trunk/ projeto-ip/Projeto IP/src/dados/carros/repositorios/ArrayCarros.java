@@ -5,7 +5,7 @@ import Interfaces.IRepositorioCarro;
 
 public class ArrayCarros implements IRepositorioCarro{
 
-	Carro[] arrayCarros;
+	private Carro[] arrayCarros;
 	
 	public ArrayCarros(){
 		this.arrayCarros = new Carro[0];
