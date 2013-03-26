@@ -4,11 +4,11 @@ import dados.pessoas.Cliente;;
 
 public interface IRepositorioCliente {
 	
-	public void inserirPessoa(Cliente cliente);
+	public void inserirCliente(Cliente cliente);
 	
-	public void removerPessoa(Cliente cliente);
+	public void removerCliente(String cpf);
 	
-	public void atualizar();
+	public void atualizar(Cliente cliente);
 	
-	public Cliente pesquisar();
+	public Cliente pesquisarCliente(String cpf);
 }
