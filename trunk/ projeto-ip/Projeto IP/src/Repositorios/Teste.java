@@ -20,6 +20,9 @@ public class Teste {
 		carros.atualizar(car2);
 		carros.inserirCarro(car);
 		Carro car4 = carros.pesquisarCarro("fox");
+		
+		RepositorioCarroArquivo repositorio = new RepositorioCarroArquivo();
+		
 	}
 
 }
