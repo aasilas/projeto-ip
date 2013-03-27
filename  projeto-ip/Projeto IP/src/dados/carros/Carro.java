@@ -82,7 +82,7 @@ public class Carro{
 		this.valor = valor;
 	}
 	
-	public int getVeiculos(){
+	public int getNumVeiculos(){
 		int count = 0;
 		for (int i = 0; i < quantidade.length; i++) {
 			if(quantidade[i].getDisponibilidade()){
