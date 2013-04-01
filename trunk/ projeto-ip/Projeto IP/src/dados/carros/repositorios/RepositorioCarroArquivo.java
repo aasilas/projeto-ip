@@ -49,58 +49,72 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 		for (int i = 0; i < sheetExcel.getRow(0).getHeight(); i++) {
 			Row row = sheetExcel.getRow(0);
 			Cell cell = row.getCell(i);
-		   //    RESOLVER O PROBLEMA DO TESTE SE A LINHA È NULA .
+		  
 			
 					
-				int count = 1;
+				// Verificar se as linhas são nulas e caso nenhuma seja nula,add o obj na linha após a ultima 
 				String palavraBase = cell.getStringCellValue() ;
-				
-				if(palavraBase.equals("Modelo")){
-					Row rowInserir = sheetExcel.getRow(count);
-					Cell cellInserir = rowInserir.getCell(1);
+				for (int j = 1;j <= sheetExcel.getLastRowNum(); j++) {
+					int count = 0;
+					Row rowInserir = null;
+					Cell cellInserir = null;
+					if(sheetExcel.getRow(j) == null){
+						count = j;
+						rowInserir = sheetExcel.createRow(count);
+						cellInserir = rowInserir.createCell(i);
+					}else{
+						count = j+1;
+						rowInserir = sheetExcel.createRow(count);
+						cellInserir = rowInserir.createCell(i);
+					}
 					
-					cell.setCellValue(carro.getModelo());
+				if(palavraBase.equals("Modelo")){
+					
+					cellInserir.setCellValue(carro.getModelo());
 					
 				}else if(palavraBase.equals("Marca")){
-					if(row == null)
-					cell.setCellValue(carro.getModelo());
+					
+					cellInserir.setCellValue(carro.getModelo());
 					
 				}else if(palavraBase.equals("Potencia")){
-					cell.setCellValue(carro.getPotencia());
+					cellInserir.setCellValue(carro.getPotencia());
 					
 				}else if(palavraBase.equals("Porta")){
-					cell.setCellValue(carro.getPorta());
+					cellInserir.setCellValue(carro.getPorta());
 				
 				}else if (palavraBase.equals("Categoria")){
-					cell.setCellValue(carro.getCategoria());
+					cellInserir.setCellValue(carro.getCategoria());
 					
 				}else if(palavraBase.equals("Valor")){
-					cell.setCellValue(carro.getValor());
+					cellInserir.setCellValue(carro.getValor());
 					
 				}else if(palavraBase.equals("Ar")){
-					cell.setCellValue(carro.getAdicionais().isAr());
+					cellInserir.setCellValue(carro.getAdicionais().isAr());
 					
 				}else if(palavraBase.equals("Travas")){
-					cell.setCellValue(carro.getAdicionais().isTravasEletricas());
+					cellInserir.setCellValue(carro.getAdicionais().isTravasEletricas());
 					
 				}else if(palavraBase.equals("Airbag")){
-					cell.setCellValue(carro.getAdicionais().isAirbag());
+					cellInserir.setCellValue(carro.getAdicionais().isAirbag());
 					
 				}else if(palavraBase.equals("GPS")){
-					cell.setCellValue(carro.getAdicionais().isGps());
+					cellInserir.setCellValue(carro.getAdicionais().isGps());
 					
 				}else if(palavraBase.equals("Som")){
-					cell.setCellValue(carro.getAdicionais().isSom());
+					cellInserir.setCellValue(carro.getAdicionais().isSom());
 					
 				}else if (palavraBase.equals("Direção Hid.")){
-					cell.setCellValue(carro.getAdicionais().isDirHidraulica());
+					cellInserir.setCellValue(carro.getAdicionais().isDirHidraulica());
 					
 				}else {
-					cell.setCellValue(carro.getAdicionais().isFreioABS());
+					cellInserir.setCellValue(carro.getAdicionais().isFreioABS());
 					
 				}
-
-		}
+				}
+				
+				}
+				
+		
 
 
 	}
