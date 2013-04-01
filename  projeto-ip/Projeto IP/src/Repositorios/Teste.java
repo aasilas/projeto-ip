@@ -1,6 +1,7 @@
 package Repositorios;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,10 +15,10 @@ import dados.carros.repositorios.*;
 public class Teste {
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Adicionais adicionais = new Adicionais(true, true, false, true, true, false, true);
-		Carro carro = new Carro(5, "1000C", "2012","Ferrari" , "4x4",adicionais , 200.00);
+		Carro carro = new Carro(5, "1000C", "2012","Ferrari" , "4x4",adicionais , 200.00, "alk-1234");
 		/*Workbook wb = new HSSFWorkbook();
 		Sheet planilha = wb.createSheet();
 		Row row = planilha.createRow(0);
