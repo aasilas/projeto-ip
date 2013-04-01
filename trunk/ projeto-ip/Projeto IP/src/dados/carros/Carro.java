@@ -14,8 +14,10 @@ public class Carro{
 	private Adicionais adicionais;
 	private double valor;
 	private Veiculos [] quantidade ;
+	private String placa;
 	
-	public Carro(int porta, String potencia, String modelo, String marca, String categoria, Adicionais adicionais, double valor){
+	public Carro(int porta, String potencia, String modelo, String marca, 
+			String categoria, Adicionais adicionais, double valor, String placa){
 		this.porta = porta;
 		this.modelo = modelo;
 		this.potencia = potencia;
@@ -82,6 +84,14 @@ public class Carro{
 		this.valor = valor;
 	}
 	
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
 	public int getNumVeiculos(){
 		int count = 0;
 		for (int i = 0; i < quantidade.length; i++) {
