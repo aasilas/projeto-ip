@@ -19,6 +19,7 @@ public class Teste {
 		
 		Adicionais adicionais = new Adicionais(true, true, false, true, true, false, true);
 		Carro carro = new Carro(5, "1000C", "2012","Ferrari" , "4x4",adicionais , 200.00, "alk-1234");
+		Carro carro2 = new Carro(0, "asda", "modelo", "hdasdh", "categ",adicionais ,150.00,"adasd");
 		/*Workbook wb = new HSSFWorkbook();
 		Sheet planilha = wb.createSheet();
 		Row row = planilha.createRow(0);
@@ -54,7 +55,7 @@ public class Teste {
 		
 		RepositorioCarroArquivo repositorio = new RepositorioCarroArquivo();
 		repositorio.inserirCarro(carro);
-	
+		repositorio.inserirCarro(carro2);
 	}
 	}
 
