@@ -1,21 +1,12 @@
 package Repositorios;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CreationHelper;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import dados.carros.*;
 import dados.carros.repositorios.*;
 public class Teste {
 
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		
 		Adicionais adicionais = new Adicionais(true, true, false, true, true, false, true);
 		Carro carro = new Carro(5, "1000C", "2012","Ferrari" , "4x4",adicionais , 200.00, "alk-1234");

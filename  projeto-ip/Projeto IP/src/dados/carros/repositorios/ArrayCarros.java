@@ -22,10 +22,10 @@ public class ArrayCarros implements IRepositorioCarro{
 	}
 
 	@Override
-	public void removerCarro(String modelo) {
+	public void removerCarro(String placa) {
 		Carro[] auxArray = new Carro[arrayCarros.length -1];
 		for (int i = 0, j =0; i < arrayCarros.length; i++) {
-			if(arrayCarros[i].getModelo() != modelo){
+			if(arrayCarros[i].getPlaca() != placa){
 				auxArray[j] = arrayCarros[i]; 
 				j++;
 			}
@@ -36,17 +36,17 @@ public class ArrayCarros implements IRepositorioCarro{
 	@Override
 	public void atualizar(Carro carro) {
 		for (int i = 0; i < this.arrayCarros.length; i++) {
-			if(this.arrayCarros[i].getModelo() == carro.getModelo()){
+			if(this.arrayCarros[i].getPlaca() == carro.getPlaca()){
 				this.arrayCarros[i] = carro;
 			}
 		}
 	}
 
 	@Override
-	public Carro pesquisarCarro(String modelo) {
+	public Carro pesquisarCarro(String placa) {
 		Carro tempCarro = null;
 		for (int i = 0; i < this.arrayCarros.length; i++) {
-			if(this.arrayCarros[i].getModelo().equals(modelo)){
+			if(this.arrayCarros[i].getPlaca().equals(placa)){
 				tempCarro = this.arrayCarros[i];
 			}
 			else{

@@ -30,13 +30,13 @@ public class ListaCarros implements IRepositorioCarro{
 	}
 
 	@Override
-	public void removerCarro(String modelo) {
+	public void removerCarro(String placa) {
 		if (this.carro != null) {
-			if (this.carro.getModelo() == modelo) {
+			if (this.carro.getPlaca() == placa) {
 				this.carro = this.proximo.carro;
 				this.proximo = this.proximo.proximo;
 			} else{
-				this.proximo.removerCarro(modelo);
+				this.proximo.removerCarro(placa);
 			} 
 		} else {
 			// TODO exception
@@ -46,7 +46,7 @@ public class ListaCarros implements IRepositorioCarro{
 	@Override
 	public void atualizar(Carro carro) {
 		if(this.carro != null){
-			if(this.carro.getModelo() == carro.getModelo()){
+			if(this.carro.getPlaca() == carro.getPlaca()){
 				this.carro = carro;
 			}
 			else{
@@ -59,14 +59,14 @@ public class ListaCarros implements IRepositorioCarro{
 	}
 
 	@Override
-	public Carro pesquisarCarro(String modelo) {	
+	public Carro pesquisarCarro(String placa) {	
 		Carro carroProcurado = null;
 		if(this.carro != null){
-			if(this.carro.getModelo() == modelo){
+			if(this.carro.getPlaca() == placa){
 				carroProcurado = this.carro;
 			}
 			else{
-				carroProcurado = this.proximo.pesquisarCarro(modelo);
+				carroProcurado = this.proximo.pesquisarCarro(placa);
 			}
 		}
 		else{
