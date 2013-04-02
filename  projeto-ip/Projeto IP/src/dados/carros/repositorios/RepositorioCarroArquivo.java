@@ -55,7 +55,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 			fis.close();
 		}
 	}
-	public void inserirCarro(Carro carro) throws IOException {
+	public void inserirCarro(Carro carro){
 
 		int count = 0;
 		boolean achou = false;
@@ -74,44 +74,44 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 					String palavraBase = cell.getStringCellValue(); 
 
 
-					if(palavraBase.equals("Placa")){
+					if(palavraBase.contains("Placa")){
 						cellInserir.setCellValue(carro.getPlaca());
-					}else if(palavraBase.equals("Modelo")){
+					}else if(palavraBase.contains("Modelo")){
 
 						cellInserir.setCellValue(carro.getModelo());
 
-					}else if(palavraBase.equals("Marca")){
+					}else if(palavraBase.contains("Marca")){
 
 						cellInserir.setCellValue(carro.getModelo());
 
-					}else if(palavraBase.equals("Potencia")){
+					}else if(palavraBase.contains("Potencia")){
 						cellInserir.setCellValue(carro.getPotencia());
 
-					}else if(palavraBase.equals("Porta")){
+					}else if(palavraBase.contains("Porta")){
 						cellInserir.setCellValue(carro.getPorta());
 
-					}else if (palavraBase.equals("Categoria")){
+					}else if (palavraBase.contains("Categoria")){
 						cellInserir.setCellValue(carro.getCategoria());
 
-					}else if(palavraBase.equals("Valor")){
+					}else if(palavraBase.contains("Valor")){
 						cell.setCellValue(carro.getValor());
 
-					}else if(palavraBase.equals("Ar")){
+					}else if(palavraBase.contains("Ar")){
 						cellInserir.setCellValue(carro.getAdicionais().isAr());
 
-					}else if(palavraBase.equals("Travas")){
+					}else if(palavraBase.contains("Travas")){
 						cellInserir.setCellValue(carro.getAdicionais().isTravasEletricas());
 
-					}else if(palavraBase.equals("Airbag")){
+					}else if(palavraBase.contains("Airbag")){
 						cellInserir.setCellValue(carro.getAdicionais().isAirbag());
 
-					}else if(palavraBase.equals("GPS")){
+					}else if(palavraBase.contains("GPS")){
 						cellInserir.setCellValue(carro.getAdicionais().isGps());
 
-					}else if(palavraBase.equals("Som")){
+					}else if(palavraBase.contains("Som")){
 						cellInserir.setCellValue(carro.getAdicionais().isSom());
 
-					}else if (palavraBase.equals("Direção Hid.")){
+					}else if (palavraBase.contains("Direção Hid.")){
 						cellInserir.setCellValue(carro.getAdicionais().isDirHidraulica());
 
 					}else {
@@ -135,42 +135,42 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 					if(palavraBase.contains("Placa")){
 						cell.setCellValue(carro.getPlaca());
 						
-					}else if(palavraBase.equalsIgnoreCase("Modelo")){
+					}else if(palavraBase.contains("Modelo")){
 
 						cellInserir.setCellValue(carro.getModelo());
 
-					}else if(palavraBase.equals("Marca")){
+					}else if(palavraBase.contains("Marca")){
 
 						cellInserir.setCellValue(carro.getModelo());
 
-					}else if(palavraBase.equals("Potencia")){
+					}else if(palavraBase.contains("Potencia")){
 						cellInserir.setCellValue(carro.getPotencia());
 
-					}else if(palavraBase.equals("Porta")){
+					}else if(palavraBase.contains("Porta")){
 						cellInserir.setCellValue(carro.getPorta());
 
-					}else if (palavraBase.equals("Categoria")){
+					}else if (palavraBase.contains("Categoria")){
 						cellInserir.setCellValue(carro.getCategoria());
 
-					}else if(palavraBase.equals("Valor")){
+					}else if(palavraBase.contains("Valor")){
 						cellInserir.setCellValue(carro.getValor());
 
-					}else if(palavraBase.equals("Ar")){
+					}else if(palavraBase.contains("Ar")){
 						cellInserir.setCellValue(carro.getAdicionais().isAr());
 
-					}else if(palavraBase.equals("Travas")){
+					}else if(palavraBase.contains("Travas")){
 						cellInserir.setCellValue(carro.getAdicionais().isTravasEletricas());
 
-					}else if(palavraBase.equals("Airbag")){
+					}else if(palavraBase.contains("Airbag")){
 						cellInserir.setCellValue(carro.getAdicionais().isAirbag());
 
-					}else if(palavraBase.equals("GPS")){
+					}else if(palavraBase.contains("GPS")){
 						cellInserir.setCellValue(carro.getAdicionais().isGps());
 
-					}else if(palavraBase.equals("Som")){
+					}else if(palavraBase.contains("Som")){
 						cellInserir.setCellValue(carro.getAdicionais().isSom());
 
-					}else if (palavraBase.equals("Direção Hid.")){
+					}else if (palavraBase.contains("Direção Hid.")){
 						cellInserir.setCellValue(carro.getAdicionais().isDirHidraulica());
 
 					}else {
@@ -189,9 +189,18 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 
 		}
-		this.fos  = new FileOutputStream("RepositorioCarro.xls");
-		wb.write(fos);
-		fos.close();
+		
+		try {
+			this.fos  = new FileOutputStream("RepositorioCarro.xls");
+			wb.write(fos);
+			fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 
