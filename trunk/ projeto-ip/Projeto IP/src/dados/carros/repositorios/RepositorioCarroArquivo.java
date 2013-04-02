@@ -24,7 +24,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 	private Workbook wb;
 
 	// TODO: Fazer checagem se o arquivo ja existe para poder persistir
-	public RepositorioCarroArquivo() throws IOException{
+	public RepositorioCarroArquivo(){
 
 		if(!new File("RepositorioCarro.xls").exists()){
 			// cria planilha
@@ -50,9 +50,11 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 				e.printStackTrace();
 			}
 		}else{
+			try{
 			this.fis = new FileInputStream("RepositorioCarro.xls");
 			wb = new HSSFWorkbook(fis);
-			fis.close();
+			fis.close();}
+			catch(IOException e){}
 		}
 	}
 	public void inserirCarro(Carro carro){

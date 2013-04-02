@@ -13,8 +13,10 @@ public class Carro{
 	private String categoria;
 	private Adicionais adicionais;
 	private double valor;
-	private Veiculos [] quantidade ;
 	private String placa;
+	private boolean disponibilidade;
+	private String dataSaida;
+	private String dataEntrega;
 	
 	public Carro(int porta, String potencia, String modelo, String marca, 
 			String categoria, Adicionais adicionais, double valor, String placa){
@@ -25,7 +27,6 @@ public class Carro{
 		this.categoria = categoria;
 		this.adicionais = adicionais;
 		this.valor = valor;
-		this.quantidade = new Veiculos[1];
 		this.placa = placa;
 	}
 
@@ -92,45 +93,27 @@ public class Carro{
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
+	
+	public boolean isDisponibilidade() {
+		return disponibilidade;
+	}
 
-	public int getNumVeiculos(){
-		int count = 0;
-		for (int i = 0; i < quantidade.length; i++) {
-			if(quantidade[i].getDisponibilidade()){
-				count++;
-			}
-		}
-		return count;
+	public String getDataSaida() {
+		return dataSaida;
 	}
-	
-	public void adicionarVeiculo(int adicional){
-		Veiculos [] aux = new Veiculos[quantidade.length + adicional];
-		for (int i = 0; i < quantidade.length; i++) {
-			aux [i] = quantidade[i];
-		}
-		this.quantidade = aux;
+	public String getDataEntrega() {
+		return dataEntrega;
 	}
-	
+
 	public void setAlugar(String saida, String entrega){
-		
-		for (int i = 0; i < quantidade.length; ) {
-			if(quantidade[i].getDisponibilidade()){
-				quantidade[i].setAlugar(entrega, saida);
-			}
-			else{
-				i++;
-			}
-		}
+		this.dataEntrega = entrega;
+		this.dataSaida = saida;
+		this.disponibilidade = false;
 	}
 	
 	public void setEntregar(){
-		
-		for (int i = 0; i < quantidade.length; ) {
-			if(!quantidade[i].getDisponibilidade()){
-				quantidade[i].setEntregar();
-			}else{
-				i++;
-			}
-		}
+		this.dataEntrega = "";
+		this.dataSaida = "";
+		this.disponibilidade = true;
 	}
 }
