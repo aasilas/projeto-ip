@@ -1,7 +1,7 @@
 package dados.funcionarios.repositorios;
 
+import interfaces.IRepositorioFuncionario;
 import dados.pessoas.Funcionario;
-import Interfaces.IRepositorioFuncionario;;
 
 public class ListaFuncionarios implements IRepositorioFuncionario{
 	

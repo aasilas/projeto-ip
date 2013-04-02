@@ -1,7 +1,7 @@
 package dados.clientes.repositorios;
 
+import interfaces.IRepositorioCliente;
 import dados.pessoas.Cliente;
-import Interfaces.IRepositorioCliente;
 
 public class ArrayClientes implements IRepositorioCliente{
 
