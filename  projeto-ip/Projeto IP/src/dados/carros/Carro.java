@@ -26,6 +26,7 @@ public class Carro{
 		this.adicionais = adicionais;
 		this.valor = valor;
 		this.quantidade = new Veiculos[1];
+		this.placa = placa;
 	}
 
 	public int getPorta() {
