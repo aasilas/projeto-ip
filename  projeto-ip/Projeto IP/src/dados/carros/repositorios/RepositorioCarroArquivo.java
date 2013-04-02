@@ -59,9 +59,9 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 		int count = 0;
 		boolean achou = false;
-
+		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
 		// verifica se existe um espaço em null entre as linhas da planilha
-		while(count <= wb.getSheetAt(0).getLastRowNum() && !achou){
+		while(count <= ultimaLinha && !achou){
 
 			if(wb.getSheetAt(0).getRow(count) == null){
 				Row row = wb.getSheetAt(0).createRow(count);
@@ -121,7 +121,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 				}
 				achou = true;
 				
-			}else if(count == wb.getSheetAt(0).getLastRowNum()){
+			}else if(count == ultimaLinha){
 				 
 				Row row = wb.getSheetAt(0).createRow(wb.getSheetAt(0).getLastRowNum()+1);
 				Row row1 = wb.getSheetAt(0).getRow(0);
@@ -133,7 +133,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 
 					if(palavraBase.contains("Placa")){
-						cell.setCellValue(carro.getPlaca());
+						cellInserir.setCellValue(carro.getPlaca());
 						
 					}else if(palavraBase.contains("Modelo")){
 
@@ -212,10 +212,11 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 	public void removerCarro(String placa) {
 
-		int count = 0;
-
-		while(count < sheetExcel.getLastRowNum()){
-
+		int count = 1;
+		boolean achou = false;
+		
+		while(count < wb.getSheetAt(0).getLastRowNum() && !achou){
+			
 		}
 	}
 
