@@ -77,7 +77,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 				Row row1 = wb.getSheetAt(0).getRow(0);
 				
 				for (int j = 0; j < 14; j++) {
-					Cell cell = row1.getCell(0);
+					Cell cell = row1.getCell(j);
 					Cell cellInserir = row.createCell(j);
 					
 					String palavraBase = cell.getStringCellValue(); 
@@ -91,7 +91,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 					}else if(palavraBase.contains("Marca")){
 
-						cellInserir.setCellValue(carro.getModelo());
+						cellInserir.setCellValue(carro.getMarca());
 
 					}else if(palavraBase.contains("Potencia")){
 						cellInserir.setCellValue(carro.getPotencia());
@@ -103,7 +103,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 						cellInserir.setCellValue(carro.getCategoria());
 
 					}else if(palavraBase.contains("Valor")){
-						cell.setCellValue(carro.getValor());
+						cellInserir.setCellValue(carro.getValor());
 
 					}else if(palavraBase.contains("Ar")){
 						cellInserir.setCellValue(carro.getAdicionais().isAr());
@@ -222,7 +222,12 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
 		
 		while(count < ultimaLinha && !achou){
-			String placaAtual = wb.getSheetAt(0).getRow(count).getCell(0).getStringCellValue();
+			
+			if(wb.getSheetAt(0).getRow(count) == null){
+				count++;
+			}
+			
+				String placaAtual = wb.getSheetAt(0).getRow(count).getCell(0).getStringCellValue();
 			if(placaAtual.equals(placa)){
 				Row row = wb.getSheetAt(0).getRow(count);
 				wb.getSheetAt(0).removeRow(row);
@@ -230,7 +235,8 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 			}else{
 				count++;
 			}
-		}
+		
+			}
 		try{
 			this.fos  = new FileOutputStream("RepositorioCarro.xls");
 			wb.write(fos);

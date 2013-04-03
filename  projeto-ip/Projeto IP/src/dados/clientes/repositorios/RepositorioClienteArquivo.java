@@ -154,7 +154,7 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 		}
 		
 		try {
-			this.fos  = new FileOutputStream("RepositorioCarro.xls");
+			this.fos  = new FileOutputStream("RepositorioCliente.xls");
 			wb.write(fos);
 			fos.close();
 		} catch (IOException e) {
@@ -182,6 +182,15 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 				}
 			
 		}
+		try{
+			this.fos  = new FileOutputStream("RepositorioCliente.xls");
+			wb.write(fos);
+			fos.close();	
+
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -192,6 +201,26 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 
 	
 	public Cliente pesquisarCliente(String cpf) {
+		
+		int count = 1;
+		boolean achou = false;
+		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
+		
+		while(count < ultimaLinha && !achou){
+			
+			if(wb.getSheetAt(0).getRow(count).getCell(1).equals(cpf)){
+				Row posicao = wb.getSheetAt(0).getRow(count);
+				Cliente clientePesquisado = new Cliente(posicao.getCell(6).getStringCellValue(), posicao.getCell(2).getStringCellValue(), 
+											posicao.getCell(0).getStringCellValue(), posicao.getCell(1).getStringCellValue(), posicao.getCell(3).getStringCellValue(), 
+											posicao.getCell(4).getStringCellValue(), posicao.getCell(5).getStringCellValue());
+			}else{
+				// Enviar exceção aqui
+				count++;
+			}
+			
+			
+		}
+		
 		
 		return null;
 	}
