@@ -216,8 +216,17 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 		int count = 1;
 		boolean achou = false;
+		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
 		
-		while(count < wb.getSheetAt(0).getLastRowNum() && !achou){
+		while(count < ultimaLinha && !achou){
+			
+				if(wb.getSheetAt(0).getRow(count).getCell(0).equals(placa)){
+					Row row = wb.getSheetAt(0).getRow(count);
+					wb.getSheetAt(0).removeRow(row);
+					achou = true;
+				}else{
+					count++;
+				}
 			
 		}
 	}
