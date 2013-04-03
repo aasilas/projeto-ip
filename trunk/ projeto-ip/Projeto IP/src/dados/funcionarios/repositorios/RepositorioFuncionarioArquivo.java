@@ -152,7 +152,7 @@ public class RepositorioFuncionarioArquivo implements IRepositorioFuncionario{
 		}
 		
 		try {
-			this.fos  = new FileOutputStream("RepositorioCarro.xls");
+			this.fos  = new FileOutputStream("RepositorioFuncionario.xls");
 			wb.write(fos);
 			fos.close();
 		} catch (IOException e) {
@@ -177,7 +177,15 @@ public class RepositorioFuncionarioArquivo implements IRepositorioFuncionario{
 				}else{
 					count++;
 				}
+		}
+		try{
+			this.fos  = new FileOutputStream("RepositorioFuncionario.xls");
+			wb.write(fos);
+			fos.close();	
 			
+			
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 
 	}

@@ -9,11 +9,10 @@ public class Cliente extends Pessoa {
 	private Carro carro;
 	private double pagamento;
 
-	public Cliente(String CNH, String email, Carro carro, String nome, String cpf, String rg, String dataNascimento, String endereco){
+	public Cliente(String CNH, String email,  String nome, String cpf, String rg, String dataNascimento, String endereco){
 		super( nome,  cpf,  rg,  dataNascimento,  endereco);
 		this.CNH = CNH;
 		this.email = email;
-		this.carro = carro;
 		this.pagamento = 0.0;
 	
 	}
