@@ -50,15 +50,22 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 				e.printStackTrace();
 			}
 		}else{
-			try{
+			abrirRepositorio();
+		}
+	}
+	
+	private void abrirRepositorio(){
+		try{
 			this.fis = new FileInputStream("RepositorioCarro.xls");
 			wb = new HSSFWorkbook(fis);
 			fis.close();}
-			catch(IOException e){}
+		catch(IOException e){
+			
 		}
 	}
+	
 	public void inserirCarro(Carro carro){
-
+		//abrirRepositorio();
 		int count = 0;
 		boolean achou = false;
 		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
@@ -186,10 +193,6 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 			}
 
 			count++;
-			
-
-
-
 		}
 		
 		try {
@@ -213,21 +216,29 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 
 	public void removerCarro(String placa) {
-
+		abrirRepositorio();
 		int count = 1;
 		boolean achou = false;
 		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
 		
 		while(count < ultimaLinha && !achou){
-			
-				if(wb.getSheetAt(0).getRow(count).getCell(0).equals(placa)){
-					Row row = wb.getSheetAt(0).getRow(count);
-					wb.getSheetAt(0).removeRow(row);
-					achou = true;
-				}else{
-					count++;
-				}
-			
+			String placaAtual = wb.getSheetAt(0).getRow(count).getCell(0).getStringCellValue();
+			if(placaAtual.equals(placa)){
+				Row row = wb.getSheetAt(0).getRow(count);
+				wb.getSheetAt(0).removeRow(row);
+				achou = true;
+			}else{
+				count++;
+			}
+		}
+		try{
+			this.fos  = new FileOutputStream("RepositorioCarro.xls");
+			wb.write(fos);
+			fos.close();	
+
+
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 
