@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -212,7 +213,7 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 				Row posicao = wb.getSheetAt(0).getRow(count);
 				Cliente clientePesquisado = new Cliente(posicao.getCell(6).getStringCellValue(), posicao.getCell(2).getStringCellValue(), 
 											posicao.getCell(0).getStringCellValue(), posicao.getCell(1).getStringCellValue(), posicao.getCell(3).getStringCellValue(), 
-											posicao.getCell(4).getStringCellValue(), posicao.getCell(5).getStringCellValue());
+											new Date(posicao.getCell(4).getStringCellValue()), posicao.getCell(5).getStringCellValue());
 			}else{
 				// Enviar exceção aqui
 				count++;

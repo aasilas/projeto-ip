@@ -1,5 +1,7 @@
 package dados.pessoas;
 
+import java.util.Date;
+
 import dados.carros.Carro;
 
 public class Cliente extends Pessoa {
@@ -9,7 +11,7 @@ public class Cliente extends Pessoa {
 	private Carro carro;
 	private double pagamento;
 
-	public Cliente(String CNH, String email,  String nome, String cpf, String rg, String dataNascimento, String endereco){
+	public Cliente(String CNH, String email,  String nome, String cpf, String rg, Date dataNascimento, String endereco){
 		super( nome,  cpf,  rg,  dataNascimento,  endereco);
 		this.CNH = CNH;
 		this.email = email;

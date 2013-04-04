@@ -1,5 +1,7 @@
 package dados.pessoas;
 
+import java.util.Date;
+
 public abstract class Funcionario extends Pessoa {
 
 	private String ctps;
@@ -8,7 +10,7 @@ public abstract class Funcionario extends Pessoa {
 	private double salarioBase;
 	
 	public Funcionario(String nome, String cpf, String rg,
-			String dataNascimento, String endereco, String ctps, String login, String senha, double salario) {
+			Date dataNascimento, String endereco, String ctps, String login, String senha, double salario) {
 		super(nome, cpf, rg, dataNascimento, endereco);
 		this.ctps = ctps;
 		this.login = login;

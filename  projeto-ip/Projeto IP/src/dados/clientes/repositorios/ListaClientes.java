@@ -2,6 +2,7 @@ package dados.clientes.repositorios;
 
 import interfaces.IRepositorioCliente;
 import dados.pessoas.Cliente;
+import exceptions.*;
 
 public class ListaClientes implements IRepositorioCliente{
 
@@ -31,7 +32,7 @@ public class ListaClientes implements IRepositorioCliente{
 	}
 
 	@Override
-	public void removerCliente(String cpf) {
+	public void removerCliente(String cpf) throws IIException {
 		if (this.cliente != null) {
 			if (this.cliente.getCpf() == cpf) {
 				this.cliente = this.proximo.cliente;
@@ -40,7 +41,7 @@ public class ListaClientes implements IRepositorioCliente{
 				this.proximo.removerCliente(cpf);
 			} 
 		} else {
-			// TODO exception
+			throw new IIException();
 		}
 	}
 
@@ -60,10 +61,10 @@ public class ListaClientes implements IRepositorioCliente{
 	}
 
 	@Override
-	public Cliente pesquisarCliente(String cpf) {
+	public Cliente pesquisarCliente(String cpf) throws BIException {
 		Cliente clienteProcurado = null;
 		if(this.cliente != null){
-			if(this.cliente.getCpf() == cpf){
+			if(this.cliente.getCpf().endsWith(cpf)){
 				clienteProcurado = this.cliente;
 			}
 			else{
@@ -71,8 +72,9 @@ public class ListaClientes implements IRepositorioCliente{
 			}
 		}
 		else{
-			//TODO exception
+			throw new BIException();
 		}
+	
 		return clienteProcurado;
 	}
 

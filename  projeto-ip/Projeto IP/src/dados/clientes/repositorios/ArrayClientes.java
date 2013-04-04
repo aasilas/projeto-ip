@@ -2,6 +2,7 @@ package dados.clientes.repositorios;
 
 import interfaces.IRepositorioCliente;
 import dados.pessoas.Cliente;
+import exceptions.*;
 
 public class ArrayClientes implements IRepositorioCliente{
 
@@ -22,15 +23,21 @@ private Cliente[] arrayClientes;
 	}
 
 	@Override
-	public void removerCliente(String cpf) {
+	public void removerCliente(String cpf) throws IIException {
+		boolean removido = false;
 		Cliente[] auxArray = new Cliente[arrayClientes.length -1];
 		for (int i = 0, j =0; i < arrayClientes.length; i++) {
 			if(arrayClientes[i].getCpf() != cpf){
 				auxArray[j] = arrayClientes[i]; 
 				j++;
+			}else{
+				removido = true;
 			}
 		}
 		this.arrayClientes = auxArray;
+		if(removido == false){
+			throw new IIException();
+		}
 	}
 
 	@Override
@@ -43,15 +50,17 @@ private Cliente[] arrayClientes;
 	}
 
 	@Override
-	public Cliente pesquisarCliente(String cpf) {
+	public Cliente pesquisarCliente(String cpf) throws BIException {
 		Cliente tempCliente = null;
+		boolean encontrado = false;
 		for (int i = 0; i < this.arrayClientes.length; i++) {
 			if(this.arrayClientes[i].getCpf().equals(cpf)){
 				tempCliente = this.arrayClientes[i];
+				encontrado = true;
 			}
-			else{
-				//TODO exception
-			}
+		}
+		if(encontrado){
+			throw new BIException();
 		}
 		return tempCliente;
 	}

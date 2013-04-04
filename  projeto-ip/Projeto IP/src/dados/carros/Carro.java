@@ -1,5 +1,7 @@
 package dados.carros;
 
+import java.util.Date;
+
 
 
 public class Carro{
@@ -15,8 +17,8 @@ public class Carro{
 	private double valor;
 	private String placa;
 	private boolean disponibilidade;
-	private String dataSaida;
-	private String dataEntrega;
+	private Date dataSaida;
+	private Date dataEntrega;
 	
 	public Carro(int porta, String potencia, String modelo, String marca, 
 			String categoria, Adicionais adicionais, double valor, String placa){
@@ -98,22 +100,22 @@ public class Carro{
 		return disponibilidade;
 	}
 
-	public String getDataSaida() {
+	public Date getDataSaida() {
 		return dataSaida;
 	}
-	public String getDataEntrega() {
+	public Date getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setAlugar(String saida, String entrega){
+	public void setAlugar(Date saida, Date entrega){
 		this.dataEntrega = entrega;
 		this.dataSaida = saida;
 		this.disponibilidade = false;
 	}
 	
 	public void setEntregar(){
-		this.dataEntrega = "";
-		this.dataSaida = "";
+		this.dataEntrega = null;
+		this.dataSaida = null;
 		this.disponibilidade = true;
 	}
 }

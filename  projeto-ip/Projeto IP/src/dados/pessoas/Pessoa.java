@@ -1,14 +1,16 @@
 package dados.pessoas;
 
+import java.util.Date;
+
 public class Pessoa {
 
 	private String nome;
 	private String cpf;
 	private String rg;
-	private String dataNascimento;
+	private Date dataNascimento;
 	private String endereco;
 	
-	public Pessoa(String nome, String cpf, String rg, String dataNascimento, String endereco){
+	public Pessoa(String nome, String cpf, String rg, Date dataNascimento, String endereco){
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -40,11 +42,11 @@ public class Pessoa {
 		this.rg = rg;
 	}
 
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
