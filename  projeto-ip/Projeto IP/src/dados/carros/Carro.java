@@ -20,8 +20,8 @@ public class Carro{
 	private Date dataSaida;
 	private Date dataEntrega;
 	
-	public Carro(int porta, String potencia, String modelo, String marca, 
-			String categoria, Adicionais adicionais, double valor, String placa){
+	public Carro(String placa, int porta, String potencia, String modelo, String marca, 
+			String categoria, Adicionais adicionais, double valor ){
 		this.porta = porta;
 		this.modelo = modelo;
 		this.potencia = potencia;
