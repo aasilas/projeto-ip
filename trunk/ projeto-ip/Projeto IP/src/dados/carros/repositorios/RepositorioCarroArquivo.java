@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,7 +15,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import dados.carros.Adicionais;
 import dados.carros.Carro;
+import dados.pessoas.Cliente;
+import exceptions.BIException;
 
 public class RepositorioCarroArquivo implements IRepositorioCarro{
 
@@ -33,7 +37,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 			sheetExcel = wb.createSheet();
 			Row row = sheetExcel.createRow(0);
 
-			String array[] = {"Placa "," Modelo "," Marca "," Potencia "," Porta "," Categoria "," Valor "," Ar "," Travas "," Airbag "," GPS "," Som ","Direção Hid.", "Freios ABS"};
+			String array[] = {"Placa "," Modelo "," Marca "," Potencia "," Porta "," Categoria "," Valor "," Ar "," Travas "," Airbag "," GPS "," Som ","Direção Hid.", "Freios ABS","Disponibilidade"," Data de Entrega","Data de Saida"};
 			for (int i = 0; i < array.length; i++) {
 				Cell cell = row.createCell(i);
 				cell.setCellValue(array[i]);
@@ -76,7 +80,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 				Row row = wb.getSheetAt(0).createRow(count);
 				Row row1 = wb.getSheetAt(0).getRow(0);
 				
-				for (int j = 0; j < 14; j++) {
+				for (int j = 0; j < 17; j++) {
 					Cell cell = row1.getCell(j);
 					Cell cellInserir = row.createCell(j);
 					
@@ -123,9 +127,17 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 					}else if (palavraBase.contains("Direção Hid.")){
 						cellInserir.setCellValue(carro.getAdicionais().isDirHidraulica());
 
-					}else {
+					}else if(palavraBase.contains("Freios ABS")){
 						cellInserir.setCellValue(carro.getAdicionais().isFreioABS());
 
+					}else if(palavraBase.contains("Disponibilidade")){
+						cellInserir.setCellValue(carro.isDisponibilidade());
+						
+					}else if(palavraBase.contains("Data de Entrega")){
+						cellInserir.setCellValue(carro.getDataEntrega());
+						
+					}else{
+						cellInserir.setCellValue(carro.getDataSaida());
 					}
 				}
 				achou = true;
@@ -135,7 +147,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 				Row row = wb.getSheetAt(0).createRow(wb.getSheetAt(0).getLastRowNum()+1);
 				Row row1 = wb.getSheetAt(0).getRow(0);
 				
-				for (int j = 0; j < 14; j++) {
+				for (int j = 0; j < 17; j++) {
 					Cell cell = row1.getCell(j);
 					Cell cellInserir = row.createCell(j);
 					String palavraBase = cell.getStringCellValue(); 
@@ -182,9 +194,17 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 					}else if (palavraBase.contains("Direção Hid.")){
 						cellInserir.setCellValue(carro.getAdicionais().isDirHidraulica());
 
-					}else {
+					}else if(palavraBase.contains("Freios ABS")){
 						cellInserir.setCellValue(carro.getAdicionais().isFreioABS());
 
+					}else if(palavraBase.contains("Disponibilidade")){
+						cellInserir.setCellValue(carro.isDisponibilidade());
+						
+					}else if(palavraBase.contains("Data de Entrega")){
+						cellInserir.setCellValue(carro.getDataEntrega());
+						
+					}else{
+						cellInserir.setCellValue(carro.getDataSaida());
 					}
 					
 				}
@@ -207,13 +227,6 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 		
 		
 	}
-
-
-
-
-
-
-
 
 	public void removerCarro(String placa) {
 		abrirRepositorio();
@@ -250,19 +263,55 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 
 
 	public void atualizar(Carro carro) {
-
+		
+		String placaCarro = carro.getPlaca();
+		int count = 1;
+		boolean achou = false;
+		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
+		
+		while(count < ultimaLinha && !achou){
+			
+			if(wb.getSheetAt(0).getRow(count).getCell(0).equals(placaCarro)){
+				
+				
+			}else{
+				
+				count++;
+			}
+		}
+		
 	}
 
-	public Carro pesquisarCarro(String modelo) {
+	public Carro pesquisarCarro(String placa) throws BIException {
 
-		for (int i = 0; i < 9; i++) {
-			Row celula = this.sheetExcel.getRow(i);
-
-
+		int count = 1;
+		boolean achou = false;
+		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
+		Carro carroPesquisado = null;
+		
+		while(count < ultimaLinha && !achou){
+			
+			if(wb.getSheetAt(0).getRow(count).getCell(0).equals(placa)){
+				
+				Row posicao = wb.getSheetAt(0).getRow(count);
+				Adicionais adicionais = new Adicionais(posicao.getCell(7).getBooleanCellValue(), posicao.getCell(10).getBooleanCellValue(), posicao.getCell(8).getBooleanCellValue(), 
+						posicao.getCell(11).getBooleanCellValue(), posicao.getCell(13).getBooleanCellValue(), posicao.getCell(9).getBooleanCellValue(), posicao.getCell(12).getBooleanCellValue());
+				//new Carro(placa, porta, potencia, modelo, marca, categoria, adicionais, valor)
+				carroPesquisado = new Carro(posicao.getCell(0).getStringCellValue(),Integer.getInteger(posicao.getCell(4).getStringCellValue()), posicao.getCell(3).getStringCellValue(), posicao.getCell(1).getStringCellValue(), 
+						posicao.getCell(2).getStringCellValue(), posicao.getCell(5).getStringCellValue() , adicionais, posicao.getCell(6).getNumericCellValue());
+				achou = true;
+			}else{
+				
+				count++;
+			}
 		}
+		if(!achou){
+			throw new BIException();
+		}
+		
+		
 
-
-		return null;
+		return carroPesquisado;
 	}
 
 
