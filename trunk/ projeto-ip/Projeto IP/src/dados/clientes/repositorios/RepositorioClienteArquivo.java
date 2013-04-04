@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import dados.pessoas.Cliente;
+import exceptions.BIException;
 import interfaces.IRepositorioCliente;
 
 public class RepositorioClienteArquivo implements IRepositorioCliente{
@@ -90,7 +91,7 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 						cellInserir.setCellValue(cliente.getRg());
 
 					}else if(palavraBase.contains("Data de Nascimento")){
-						cellInserir.setCellValue(cliente.getDataNascimento());
+						cellInserir.setCellValue(cliente.getDataNascimento().toLocaleString());
 
 					}else if (palavraBase.contains("Endereco")){
 						cellInserir.setCellValue(cliente.getEndereco());
@@ -130,7 +131,7 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 						cellInserir.setCellValue(cliente.getRg());
 
 					}else if(palavraBase.contains("Data de Nascimento")){
-						cellInserir.setCellValue(cliente.getDataNascimento());
+						cellInserir.setCellValue(cliente.getDataNascimento().toLocaleString());
 
 					}else if (palavraBase.contains("Endereco")){
 						cellInserir.setCellValue(cliente.getEndereco());
@@ -201,29 +202,33 @@ public class RepositorioClienteArquivo implements IRepositorioCliente{
 	}
 
 	
-	public Cliente pesquisarCliente(String cpf) {
+	public Cliente pesquisarCliente(String cpf) throws BIException {
 		
 		int count = 1;
 		boolean achou = false;
 		int ultimaLinha = wb.getSheetAt(0).getLastRowNum();
+		Cliente clientePesquisado = null;
 		
 		while(count < ultimaLinha && !achou){
 			
 			if(wb.getSheetAt(0).getRow(count).getCell(1).equals(cpf)){
+				
 				Row posicao = wb.getSheetAt(0).getRow(count);
-				Cliente clientePesquisado = new Cliente(posicao.getCell(6).getStringCellValue(), posicao.getCell(2).getStringCellValue(), 
+				clientePesquisado = new Cliente(posicao.getCell(6).getStringCellValue(), posicao.getCell(2).getStringCellValue(), 
 											posicao.getCell(0).getStringCellValue(), posicao.getCell(1).getStringCellValue(), posicao.getCell(3).getStringCellValue(), 
 											new Date(posicao.getCell(4).getStringCellValue()), posicao.getCell(5).getStringCellValue());
+				achou = true;
 			}else{
 				// Enviar exceção aqui
 				count++;
 			}
-			
-			
+		}
+		if(!achou){
+			throw new BIException();
 		}
 		
 		
-		return null;
+		return clientePesquisado;
 	}
 
 	
