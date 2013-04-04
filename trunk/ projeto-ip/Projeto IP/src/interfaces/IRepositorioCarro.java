@@ -1,6 +1,7 @@
 package interfaces;
 
 import dados.carros.Carro;
+import exceptions.BIException;
 
 public interface IRepositorioCarro {
 	
@@ -10,5 +11,5 @@ public interface IRepositorioCarro {
 	
 	public void atualizar(Carro carro);
 	
-	public Carro pesquisarCarro(String modelo);
+	public Carro pesquisarCarro(String modelo) throws BIException ;
 }
