@@ -2,6 +2,8 @@ package dados.funcionarios.repositorios;
 
 import interfaces.IRepositorioFuncionario;
 import dados.pessoas.Funcionario;
+import exceptions.BIException;
+import exceptions.IIException;
 
 public class ListaFuncionarios implements IRepositorioFuncionario{
 	
@@ -30,7 +32,7 @@ public class ListaFuncionarios implements IRepositorioFuncionario{
 	}
 
 	@Override
-	public void removerFuncionario(String cpf) {
+	public void removerFuncionario(String cpf) throws IIException {
 		if (this.funcionario != null) {
 			if (this.funcionario.getCpf() == cpf) {
 				this.funcionario = this.proximo.funcionario;
@@ -39,7 +41,7 @@ public class ListaFuncionarios implements IRepositorioFuncionario{
 				this.proximo.removerFuncionario(cpf);
 			} 
 		} else {
-			// TODO exception
+			throw new IIException();
 		}
 	}
 
@@ -59,7 +61,7 @@ public class ListaFuncionarios implements IRepositorioFuncionario{
 	}
 
 	@Override
-	public Funcionario pesquisarFuncionario(String cpf) {	
+	public Funcionario pesquisarFuncionario(String cpf)throws BIException {
 		Funcionario funcionarioProcurado = null;
 		if(this.funcionario != null){
 			if(this.funcionario.getCpf() == cpf){
@@ -70,7 +72,7 @@ public class ListaFuncionarios implements IRepositorioFuncionario{
 			}
 		}
 		else{
-			//TODO exception
+			throw new BIException();
 		}
 		return funcionarioProcurado;
 	}

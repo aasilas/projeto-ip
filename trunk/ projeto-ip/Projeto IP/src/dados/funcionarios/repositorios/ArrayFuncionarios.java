@@ -2,6 +2,8 @@ package dados.funcionarios.repositorios;
 
 import interfaces.IRepositorioFuncionario;
 import dados.pessoas.Funcionario;
+import exceptions.BIException;
+import exceptions.IIException;
 
 public class ArrayFuncionarios implements IRepositorioFuncionario{
 
@@ -22,15 +24,22 @@ public class ArrayFuncionarios implements IRepositorioFuncionario{
 	}
 
 	@Override
-	public void removerFuncionario(String cpf) {
+	public void removerFuncionario(String cpf) throws IIException {
+		boolean removido = false;
 		Funcionario[] auxArray = new Funcionario[arrayFuncionarios.length -1];
 		for (int i = 0, j =0; i < arrayFuncionarios.length; i++) {
 			if(arrayFuncionarios[i].getCpf() != cpf){
 				auxArray[j] = arrayFuncionarios[i]; 
 				j++;
 			}
+			else{
+				removido = true;
+			}
 		}
 		this.arrayFuncionarios = auxArray;
+		if(removido == false){
+			throw new IIException();
+		}
 	}
 
 	@Override
@@ -43,15 +52,17 @@ public class ArrayFuncionarios implements IRepositorioFuncionario{
 	}
 
 	@Override
-	public Funcionario pesquisarFuncionario(String cpf) {	
+	public Funcionario pesquisarFuncionario(String cpf) throws BIException {	
 		Funcionario tempFuncionario = null;
+		boolean encontrado = false;
 		for (int i = 0; i < this.arrayFuncionarios.length; i++) {
 			if(this.arrayFuncionarios[i].getCpf().equals(cpf)){
 				tempFuncionario = this.arrayFuncionarios[i];
+				encontrado = true;
 			}
-			else{
-				//TODO exception
-			}
+		}
+		if(encontrado){
+			throw new BIException();
 		}
 		return tempFuncionario;
 	}

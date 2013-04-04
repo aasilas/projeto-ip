@@ -88,7 +88,7 @@ public class RepositorioFuncionarioArquivo implements IRepositorioFuncionario{
 						cellInserir.setCellValue(funcionario.getRg());
 
 					}else if(palavraBase.contains("Data de Nascimento")){
-						cellInserir.setCellValue(funcionario.getDataNascimento());
+						cellInserir.setCellValue(funcionario.getDataNascimento().toLocaleString());
 
 					}else if (palavraBase.contains("Endereco")){
 						cellInserir.setCellValue(funcionario.getEndereco());
@@ -127,8 +127,8 @@ public class RepositorioFuncionarioArquivo implements IRepositorioFuncionario{
 					}else if(palavraBase.contains("RG")){
 						cellInserir.setCellValue(funcionario.getRg());
 
-					}else if(palavraBase.contains("Data de Nascimento")){
-						cellInserir.setCellValue(funcionario.getDataNascimento());
+					}else if(palavraBase.contains("Data de nascimento")){
+						cellInserir.setCellValue(funcionario.getDataNascimento().toLocaleString());
 
 					}else if (palavraBase.contains("Endereco")){
 						cellInserir.setCellValue(funcionario.getEndereco());

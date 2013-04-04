@@ -5,14 +5,13 @@ import java.io.*;
 import dados.carros.repositorios.*;
 import dados.clientes.repositorios.*;
 import dados.funcionarios.repositorios.*;
+import dados.pessoas.*;
 import interfaces.*;
 import exceptions.*;
 
 public class Fachada {
 
-	private enum tipoRepo {
-		ARRAY, ARQUIVO, TAD
-	};
+	private enum tipoRepo {ARRAY, ARQUIVO, TAD};
 
 	private IRepositorioCarro carros;
 	private IRepositorioCliente clientes;
@@ -47,4 +46,71 @@ public class Fachada {
 		}
 	}
 
+	
+	public void cadastrarCliente(Cliente cliente){
+		try{
+			Cliente existente = pesquisarCliente(cliente.getCpf());
+		}
+		catch(Exception e){
+			clientes.inserirCliente(cliente);
+		}
+		
+	}
+	
+	public void removerCliente(String cpf) throws IIException{
+		try{
+			clientes.removerCliente(cpf);
+		}
+		catch(IIException ii){
+			throw new IIException();
+		}
+	}
+	
+	public Cliente pesquisarCliente(String cpf) throws BIException{
+		try {
+			return clientes.pesquisarCliente(cpf);
+		} catch (BIException bi) {
+			throw new BIException();
+		}
+		
+	}
+	
+	public void atualizarCliente(Cliente cliente){
+		this.clientes.atualizar(cliente);
+	}
+	
+	
+
+	public void cadastrarFuncionario(Funcionario funcionario){
+		try{
+			Funcionario existente = pesquisarFuncionario(funcionario.getCpf());
+		}
+		catch(Exception e){
+			funcionarios.inserirFuncionario(funcionario);
+		}
+		
+	}
+	
+	public void removerFuncionario(String cpf) throws IIException{
+		try{
+			funcionarios.removerFuncionario(cpf);
+		}
+		catch(IIException ii){
+			throw new IIException();
+		}
+	}
+	
+	public Funcionario pesquisarFuncionario(String cpf) throws BIException{
+		try {
+			return funcionarios.pesquisarFuncionario(cpf);
+		} catch (BIException bi) {
+			throw new BIException();
+		}
+		
+	}
+	
+	public void atualizarFuncionario(Funcionario funcionario){
+		this.funcionarios.atualizar(funcionario);
+	}
+	
 }
