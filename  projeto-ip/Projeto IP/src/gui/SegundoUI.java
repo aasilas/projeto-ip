@@ -31,11 +31,23 @@ import java.awt.Panel;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.ScrollPane;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Point;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JList;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
 
 public class SegundoUI extends JFrame {
 
 	private JPanel contentPane;
-
+	private JTable Carros;
+	private JTable CarroDisponivel;
+	private JTable CarroIndisponivel;
+	private JTable Clientes;
+	private JTable ClientesAtendimento;
 	/**
 	 * Launch the application.
 	 */
@@ -77,6 +89,75 @@ public class SegundoUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				// mandar um get repositorio,pra ele imprimir as informações dos carros
+				JPanel panel = new JPanel();
+				panel.setBounds(10, 33, 700, 462);
+				contentPane.add(panel);
+				panel.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 694, 462);
+				panel.add(scrollPane);
+				
+				Carros = new JTable();
+				Carros.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+					},
+					new String[] {
+						"Carros"
+					}
+				));
+				Carros.getColumnModel().getColumn(0).setPreferredWidth(619);
+				scrollPane.setViewportView(Carros);
 				
 			}
 		});
@@ -86,7 +167,77 @@ public class SegundoUI extends JFrame {
 		mntmCarrosAlugados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				// Verificar se já existe uma lista aberta e caso sim,fechar e abrir a desejada.
 				// Mostrar os carros que tem o disponibilidade false
+				JPanel panel = new JPanel();
+				panel.setBounds(10, 33, 700, 462);
+				contentPane.add(panel);
+				panel.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 694, 462);
+				panel.add(scrollPane);
+				
+				CarroIndisponivel = new JTable();
+				CarroIndisponivel.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+					},
+					new String[] {
+						"Carros Indisponiveis"
+					}
+				));
+				CarroIndisponivel.getColumnModel().getColumn(0).setPreferredWidth(620);
+				scrollPane.setViewportView(CarroIndisponivel);
 				
 			}
 		});
@@ -97,6 +248,75 @@ public class SegundoUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				// Imprimir carros com disponibilidade true
+				JPanel panel = new JPanel();
+				panel.setBounds(10, 33, 700, 462);
+				contentPane.add(panel);
+				panel.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 694, 462);
+				panel.add(scrollPane);
+				
+				CarroDisponivel = new JTable();
+				CarroDisponivel.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+					},
+					new String[] {
+						"Carros Disponiveis"
+					}
+				));
+				CarroDisponivel.getColumnModel().getColumn(0).setPreferredWidth(620);
+				scrollPane.setViewportView(CarroDisponivel);
 			}
 		});
 		mnListas.add(mntmCarrosDisponveis);
@@ -106,9 +326,158 @@ public class SegundoUI extends JFrame {
 		menuBar.add(mnCliente);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Lista de clientes");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JPanel panel = new JPanel();
+				panel.setBounds(10, 33, 700, 462);
+				contentPane.add(panel);
+				panel.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 694, 462);
+				panel.add(scrollPane);
+				
+				Clientes = new JTable();
+				Clientes.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+					},
+					new String[] {
+						"Clientes"
+					}
+				));
+				Clientes.getColumnModel().getColumn(0).setPreferredWidth(619);
+				scrollPane.setViewportView(Clientes);
+				
+			}
+		});
 		mnCliente.add(mntmNewMenuItem);
 		
-		JMenuItem mntmClientesComCarro = new JMenuItem("Clientes com carro");
+		JMenuItem mntmClientesComCarro = new JMenuItem("Clientes em atendimento");
+		mntmClientesComCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JPanel panel = new JPanel();
+				panel.setBounds(10, 33, 700, 462);
+				contentPane.add(panel);
+				panel.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 694, 462);
+				panel.add(scrollPane);
+				
+				ClientesAtendimento = new JTable();
+				ClientesAtendimento.setModel(new DefaultTableModel(
+					new Object[][] {
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+						{null},
+					},
+					new String[] {
+						"Clientes em atendimento"
+					}
+				));
+				ClientesAtendimento.getColumnModel().getColumn(0).setPreferredWidth(619);
+				scrollPane.setViewportView(ClientesAtendimento);
+			}
+		});
 		mnCliente.add(mntmClientesComCarro);
 		
 		JMenuItem mntmCadastrarCliente = new JMenuItem("Cadastrar Cliente");
@@ -123,6 +492,10 @@ public class SegundoUI extends JFrame {
 		
 		JMenuItem mntmInserirFuncionrio = new JMenuItem("Inserir Funcion\u00E1rio");
 		mnFuncionrio.add(mntmInserirFuncionrio);
+		
+		
+		
+		
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
