@@ -30,7 +30,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ui extends JFrame {
+public class UI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -43,7 +43,7 @@ public class ui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ui frame = new ui();
+					UI frame = new UI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class ui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ui() {
+	public UI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 563, 359);
 		contentPane = new JPanel();
@@ -96,11 +96,11 @@ public class ui extends JFrame {
 		btnAcessar.setBounds(0, 0, 102, 23);
 		panel.add(btnAcessar);
 		btnAcessar.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+			// Pesquisar o login e a senha,caso aquele não exista,enviar um exception e caso a senha esteja incorreta,enviar msg com senha incorreta.
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					RepositorioGUI repositorioGUI = new RepositorioGUI();
-					repositorioGUI.setVisible(true);
+					SegundoUI ui2 = new SegundoUI();
+					ui2.setVisible(true);
 				} catch (Exception e) {
 					
 				}
