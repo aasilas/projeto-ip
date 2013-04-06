@@ -1,21 +1,29 @@
 package principal;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-import dados.carros.repositorios.*;
-import dados.clientes.repositorios.*;
-import dados.funcionarios.repositorios.*;
-import dados.pessoas.*;
-import interfaces.*;
-import exceptions.*;
+import negocios.ControleCarros;
+import negocios.ControleClientes;
+import negocios.ControleFuncionarios;
+import dados.carros.repositorios.ArrayCarros;
+import dados.clientes.repositorios.ArrayClientes;
+import dados.funcionarios.repositorios.ArrayFuncionarios;
+import dados.pessoas.Cliente;
+import dados.pessoas.Funcionario;
+import exceptions.BDEException;
+import exceptions.BIException;
+import exceptions.IIException;
 
 public class Fachada {
 
 	private enum tipoRepo {ARRAY, ARQUIVO, TAD};
-
-	private IRepositorioCarro carros;
-	private IRepositorioCliente clientes;
-	private IRepositorioFuncionario funcionarios;
+	private ControleCarros controleCarros;
+	private ControleClientes controleClientes;
+	private ControleFuncionarios controlefuncionarios;
 
 	public void carregarRepositorios() throws FileNotFoundException, IOException,
 			BDEException {
@@ -25,17 +33,17 @@ public class Fachada {
 			BufferedReader buffered = new BufferedReader(reader);
 			String linha = buffered.readLine();
 			if (linha.equalsIgnoreCase(tipoRepo.ARRAY.name())) {
-				carros = new ArrayCarros();
-				clientes = new ArrayClientes();
-				funcionarios = new ArrayFuncionarios();
+				this.controleCarros = new ControleCarros(new ArrayCarros());
+				this.controleClientes = new ControleClientes(new ArrayClientes());
+				this.controlefuncionarios = new ControleFuncionarios(new ArrayFuncionarios());
 			} else if (linha.equalsIgnoreCase(tipoRepo.TAD.name())) {
-				carros = new ArrayCarros();
-				clientes = new ArrayClientes();
-				funcionarios = new ArrayFuncionarios();
+				this.controleCarros = new ControleCarros(new ArrayCarros());
+				this.controleClientes = new ControleClientes(new ArrayClientes());
+				this.controlefuncionarios = new ControleFuncionarios(new ArrayFuncionarios());
 			} else if (linha.equalsIgnoreCase(tipoRepo.ARQUIVO.name())) {
-				carros = new ArrayCarros();
-				clientes = new ArrayClientes();
-				funcionarios = new ArrayFuncionarios();
+				this.controleCarros = new ControleCarros(new ArrayCarros());
+				this.controleClientes = new ControleClientes(new ArrayClientes());
+				this.controlefuncionarios = new ControleFuncionarios(new ArrayFuncionarios());
 			} else {
 				throw new BDEException();
 			}
@@ -47,70 +55,7 @@ public class Fachada {
 	}
 
 	
-	public void cadastrarCliente(Cliente cliente){
-		try{
-			Cliente existente = pesquisarCliente(cliente.getCpf());
-		}
-		catch(Exception e){
-			clientes.inserirCliente(cliente);
-		}
-		
-	}
-	
-	public void removerCliente(String cpf) throws IIException{
-		try{
-			clientes.removerCliente(cpf);
-		}
-		catch(IIException ii){
-			throw new IIException();
-		}
-	}
-	
-	public Cliente pesquisarCliente(String cpf) throws BIException{
-		try {
-			return clientes.pesquisarCliente(cpf);
-		} catch (BIException bi) {
-			throw new BIException();
-		}
-		
-	}
-	
-	public void atualizarCliente(Cliente cliente){
-		this.clientes.atualizar(cliente);
-	}
-	
 	
 
-	public void cadastrarFuncionario(Funcionario funcionario){
-		try{
-			Funcionario existente = pesquisarFuncionario(funcionario.getCpf());
-		}
-		catch(Exception e){
-			funcionarios.inserirFuncionario(funcionario);
-		}
-		
-	}
-	
-	public void removerFuncionario(String cpf) throws IIException{
-		try{
-			funcionarios.removerFuncionario(cpf);
-		}
-		catch(IIException ii){
-			throw new IIException();
-		}
-	}
-	
-	public Funcionario pesquisarFuncionario(String cpf) throws BIException{
-		try {
-			return funcionarios.pesquisarFuncionario(cpf);
-		} catch (BIException bi) {
-			throw new BIException();
-		}
-		
-	}
-	
-	public void atualizarFuncionario(Funcionario funcionario){
-		this.funcionarios.atualizar(funcionario);
-	}
 	
 }
