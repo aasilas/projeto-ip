@@ -35,7 +35,7 @@ public class UI extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +45,7 @@ public class UI extends JFrame {
 				try {
 					UI frame = new UI();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -99,8 +100,10 @@ public class UI extends JFrame {
 			// Pesquisar o login e a senha,caso aquele não exista,enviar um exception e caso a senha esteja incorreta,enviar msg com senha incorreta.
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					
 					SegundoUI ui2 = new SegundoUI();
 					ui2.setVisible(true);
+					
 				} catch (Exception e) {
 					
 				}

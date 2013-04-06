@@ -39,6 +39,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
+import javax.swing.AbstractListModel;
 
 public class SegundoUI extends JFrame {
 
@@ -490,8 +491,22 @@ public class SegundoUI extends JFrame {
 		JMenuItem mntmListaDeFuncionrios = new JMenuItem("Lista de Funcion\u00E1rios");
 		mnFuncionrio.add(mntmListaDeFuncionrios);
 		
-		JMenuItem mntmInserirFuncionrio = new JMenuItem("Inserir Funcion\u00E1rio");
-		mnFuncionrio.add(mntmInserirFuncionrio);
+		JMenu mnInserir = new JMenu("Inserir");
+		mnInserir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		mnInserir.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		menuBar.add(mnInserir);
+		
+		JMenuItem mntmCarro = new JMenuItem("Carro");
+		mnInserir.add(mntmCarro);
+		
+		JMenuItem mntmCliente = new JMenuItem("Cliente");
+		mnInserir.add(mntmCliente);
+		
+		JMenuItem mntmFuncionrio = new JMenuItem("Funcion\u00E1rio");
+		mnInserir.add(mntmFuncionrio);
 		
 		
 		
