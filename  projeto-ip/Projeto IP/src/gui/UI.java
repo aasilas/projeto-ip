@@ -103,7 +103,7 @@ public class UI extends JFrame {
 					
 					SegundoUI ui2 = new SegundoUI();
 					ui2.setVisible(true);
-					
+					DeletarFrame();
 				} catch (Exception e) {
 					
 				}
@@ -122,5 +122,9 @@ public class UI extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 		}
+	}
+	
+	private void DeletarFrame(){
+		this.dispose();
 	}
 }
