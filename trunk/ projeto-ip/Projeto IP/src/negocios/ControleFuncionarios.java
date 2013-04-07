@@ -57,7 +57,12 @@ public class ControleFuncionarios {
 		return false;
 	}
 	
-	private boolean cpfValido(String cpf){
-		return false;
-	} 
+	public boolean clienteCadastrado(String cpf){
+		try{ 
+			this.pesquisarFuncionario(cpf);
+			return true;
+		} catch (BIException bi) {
+			return false;
+		}
+	}
 }

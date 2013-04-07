@@ -2,6 +2,7 @@ package dados.carros.repositorios;
 
 import interfaces.IRepositorioCarro;
 import dados.carros.Carro;
+import exceptions.IIException;
 
 public class ListaCarros implements IRepositorioCarro{
 
@@ -30,7 +31,7 @@ public class ListaCarros implements IRepositorioCarro{
 	}
 
 	@Override
-	public void removerCarro(String placa) {
+	public void removerCarro(String placa) throws IIException {
 		if (this.carro != null) {
 			if (this.carro.getPlaca() == placa) {
 				this.carro = this.proximo.carro;
@@ -39,7 +40,7 @@ public class ListaCarros implements IRepositorioCarro{
 				this.proximo.removerCarro(placa);
 			} 
 		} else {
-			// TODO exception
+			throw new IIException();
 		}
 	}
 

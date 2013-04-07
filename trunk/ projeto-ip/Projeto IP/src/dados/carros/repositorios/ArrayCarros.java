@@ -2,6 +2,7 @@ package dados.carros.repositorios;
 
 import interfaces.IRepositorioCarro;
 import dados.carros.Carro;
+import exceptions.IIException;
 
 public class ArrayCarros implements IRepositorioCarro{
 
@@ -22,15 +23,21 @@ public class ArrayCarros implements IRepositorioCarro{
 	}
 
 	@Override
-	public void removerCarro(String placa) {
+	public void removerCarro(String placa) throws IIException {
+		boolean removido = false;
 		Carro[] auxArray = new Carro[arrayCarros.length -1];
 		for (int i = 0, j =0; i < arrayCarros.length; i++) {
 			if(arrayCarros[i].getPlaca() != placa){
 				auxArray[j] = arrayCarros[i]; 
 				j++;
+			}else{
+				removido = true;
 			}
 		}
 		this.arrayCarros = auxArray;
+		if(removido == false){
+			throw new IIException();
+		}
 	}
 
 	@Override
