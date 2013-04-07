@@ -199,7 +199,7 @@ public class SegundoUI extends JFrame {
 		});
 		mnListas.add(mntmCarrosDaloja);
 
-		JMenuItem mntmCarrosAlugados = new JMenuItem("Carros Alugados");
+		JMenuItem mntmCarrosAlugados = new JMenuItem("Carros Indisponiveis");
 		mntmCarrosAlugados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -744,7 +744,7 @@ public class SegundoUI extends JFrame {
 
 				txtNome = new JTextField();
 				txtNome.setBounds(59, 108, 122, 28);
-				txtNome.setText("Nome");
+				txtNome.setText("Nome ");
 				panelCadastroCliente.add(txtNome);
 				txtNome.setColumns(10);
 
