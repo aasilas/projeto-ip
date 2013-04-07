@@ -13,6 +13,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+
 import java.awt.CardLayout;
 import javax.swing.JMenuBar;
 import java.awt.Button;
@@ -43,6 +45,7 @@ public class UI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
 					UI frame = new UI();
 					frame.setVisible(true);
 					
