@@ -19,7 +19,6 @@ import java.awt.CardLayout;
 import javax.swing.JMenuBar;
 import java.awt.Button;
 import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JInternalFrame;
@@ -45,7 +44,7 @@ public class UI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+					
 					UI frame = new UI();
 					frame.setVisible(true);
 					
@@ -74,8 +73,8 @@ public class UI extends JFrame {
 		textField.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSenha.setBounds(103, 138, 85, 29);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(lblSenha);
 		
 		passwordField = new JPasswordField();
@@ -83,8 +82,8 @@ public class UI extends JFrame {
 		contentPane.add(passwordField);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblLogin.setBounds(103, 85, 85, 22);
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(lblLogin);
 		
 		JPanel panel = new JPanel();
@@ -113,10 +112,11 @@ public class UI extends JFrame {
 			}
 		});
 		
-		JLabel lblAluguelDeCarros = DefaultComponentFactory.getInstance().createTitle("Aluguel de Carros");
-		lblAluguelDeCarros.setFont(new Font("Planet Benson 2", Font.BOLD | Font.ITALIC, 18));
-		lblAluguelDeCarros.setBounds(152, 3, 244, 45);
-		contentPane.add(lblAluguelDeCarros);
+		
+		JLabel lblAluguelDeCarros_1 = new JLabel("Aluguel de Carros");
+		lblAluguelDeCarros_1.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		lblAluguelDeCarros_1.setBounds(179, 17, 214, 48);
+		contentPane.add(lblAluguelDeCarros_1);
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
