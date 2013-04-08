@@ -1,5 +1,7 @@
 package negocios;
 
+import java.util.Date;
+
 import dados.carros.Carro;
 import exceptions.BIException;
 import exceptions.CCException;
@@ -53,4 +55,23 @@ public class ControleCarros {
 			return false;
 		}
 	}
+	
+	public void alugarCarro(String placa, Date entrega, Date saida)throws BIException {
+		try {
+			pesquisarCarro(placa).setAlugar(saida, entrega);
+		} catch (BIException ex) {
+			throw new BIException();
+		}
+	}
+
+	public void entregarCarro(String placa) throws BIException {
+		try {
+			pesquisarCarro(placa).setEntregar();
+		} catch (BIException ex) {
+			throw new BIException();
+		}
+
+	}
+
+	
 }
