@@ -2,6 +2,7 @@ package dados.carros.repositorios;
 
 import interfaces.IRepositorioCarro;
 import dados.carros.Carro;
+import exceptions.BIException;
 import exceptions.IIException;
 
 public class ArrayCarros implements IRepositorioCarro{
@@ -50,17 +51,17 @@ public class ArrayCarros implements IRepositorioCarro{
 	}
 
 	@Override
-	public Carro pesquisarCarro(String placa) {
+	public Carro pesquisarCarro(String placa) throws BIException {
 		Carro tempCarro = null;
 		for (int i = 0; i < this.arrayCarros.length; i++) {
 			if(this.arrayCarros[i].getPlaca().equals(placa)){
 				tempCarro = this.arrayCarros[i];
 			}
 			else{
-				//TODO exception
+				throw new BIException();
 			}
 		}
 		return tempCarro;
 	}
-
+	
 }
