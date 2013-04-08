@@ -1,13 +1,14 @@
 package dados.carros.repositorios;
 
-import interfaces.IRepositorioCarro;
+import interfaces.*;
 import dados.carros.Carro;
 import exceptions.BIException;
 import exceptions.IIException;
 
-public class ArrayCarros implements IRepositorioCarro{
+public class ArrayCarros implements IRepositorioCarro, Iterator<Carro>{
 
 	private Carro[] arrayCarros;
+	private int count = 0;
 	
 	public ArrayCarros(){
 		this.arrayCarros = new Carro[0];
@@ -62,6 +63,26 @@ public class ArrayCarros implements IRepositorioCarro{
 			}
 		}
 		return tempCarro;
+	}
+
+	@Override
+	public Carro next() {
+		count++;
+		return arrayCarros[count -1];
+	}
+
+	@Override
+	public boolean hasNext() {
+		if(count < arrayCarros.length)
+			return true;
+		else
+			return false;
+		
+	}
+
+	@Override
+	public Iterator<Carro> iterator() {
+		return this;
 	}
 	
 }
