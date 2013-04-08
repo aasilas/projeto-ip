@@ -1,36 +1,22 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JPasswordField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTable;
-import javax.swing.UIManager;
-
-import java.awt.CardLayout;
-import javax.swing.JMenuBar;
-import java.awt.Button;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.Color;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
-import javax.swing.AbstractAction;
-import java.awt.event.ActionEvent;
-import javax.swing.Action;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+@SuppressWarnings("serial")
 public class UI extends JFrame {
 
 	private JPanel contentPane;
@@ -118,7 +104,9 @@ public class UI extends JFrame {
 		lblAluguelDeCarros_1.setBounds(179, 17, 214, 48);
 		contentPane.add(lblAluguelDeCarros_1);
 	}
+	@SuppressWarnings("unused")
 	private class SwingAction extends AbstractAction {
+		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "SwingAction");
 			putValue(SHORT_DESCRIPTION, "Some short description");

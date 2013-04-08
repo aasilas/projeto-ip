@@ -1,45 +1,28 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JMenuBar;
-import javax.swing.JComboBox;
-import javax.swing.JToggleButton;
-import javax.swing.JSlider;
-import javax.swing.JEditorPane;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTable;
-import java.awt.Choice;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JMenuItem;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JPopupMenu;
+import java.awt.Button;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Color;
-import java.awt.Panel;
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.ScrollPane;
-import javax.swing.table.DefaultTableModel;
-import java.awt.Point;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JList;
-import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.AbstractListModel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class SegundoUI extends JFrame {
 
@@ -191,6 +174,10 @@ public class SegundoUI extends JFrame {
 				));
 				Carros.getColumnModel().getColumn(0).setPreferredWidth(619);
 				scrollPane.setViewportView(Carros);
+				
+				Button button = new Button("Atualizar");
+				button.setBounds(337, 101, 70, 22);
+				panel.add(button);
 
 				trocarPanel(panel);
 				mostrarPanel();
@@ -633,99 +620,8 @@ public class SegundoUI extends JFrame {
 		mntmCarro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				esconderPanel();
-				// Criando painel Cadastro carro
-
-				Panel panelCadastrarCarro = new Panel();
-				panelCadastrarCarro.setBounds(0, 27, 706, 464);
-				contentPane.add(panelCadastrarCarro);
-				panelCadastrarCarro.setLayout(null);
-
-				JLabel lblNewLabel = new JLabel("Cadastrar Carro");
-				lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-				lblNewLabel.setBounds(222, 25, 226, 43);
-				panelCadastrarCarro.add(lblNewLabel);
-
-				txtPlaca = new JTextField();
-				txtPlaca.setText("Placa");
-				txtPlaca.setBounds(84, 118, 122, 28);
-				panelCadastrarCarro.add(txtPlaca);
-				txtPlaca.setColumns(10);
-
-				txtPorta = new JTextField();
-				txtPorta.setText("Porta");
-				txtPorta.setBounds(84, 174, 122, 28);
-				panelCadastrarCarro.add(txtPorta);
-				txtPorta.setColumns(10);
-
-				txtPotncia = new JTextField();
-				txtPotncia.setText("Pot\u00EAncia");
-				txtPotncia.setBounds(84, 229, 122, 28);
-				panelCadastrarCarro.add(txtPotncia);
-				txtPotncia.setColumns(10);
-
-				txtModelo = new JTextField();
-				txtModelo.setText("Modelo");
-				txtModelo.setBounds(84, 282, 122, 28);
-				panelCadastrarCarro.add(txtModelo);
-				txtModelo.setColumns(10);
-
-				txtMarca = new JTextField();
-				txtMarca.setText("Marca");
-				txtMarca.setBounds(84, 338, 122, 28);
-				panelCadastrarCarro.add(txtMarca);
-				txtMarca.setColumns(10);
-
-				txtCategoria = new JTextField();
-				txtCategoria.setText("Categoria");
-				txtCategoria.setBounds(296, 118, 122, 28);
-				panelCadastrarCarro.add(txtCategoria);
-				txtCategoria.setColumns(10);
-
-				txtAr = new JTextField();
-				txtAr.setText("Ar");
-				txtAr.setBounds(296, 174, 122, 28);
-				panelCadastrarCarro.add(txtAr);
-				txtAr.setColumns(10);
-
-				txtGps = new JTextField();
-				txtGps.setText("GPS");
-				txtGps.setBounds(296, 229, 122, 28);
-				panelCadastrarCarro.add(txtGps);
-				txtGps.setColumns(10);
-
-				txtTravas = new JTextField();
-				txtTravas.setText("Trava El\u00E9trica");
-				txtTravas.setBounds(296, 282, 122, 28);
-				panelCadastrarCarro.add(txtTravas);
-				txtTravas.setColumns(10);
-
-				txtSom = new JTextField();
-				txtSom.setText("Som");
-				txtSom.setBounds(296, 338, 122, 28);
-				panelCadastrarCarro.add(txtSom);
-				txtSom.setColumns(10);
-
-				txtFreiosAbs = new JTextField();
-				txtFreiosAbs.setText("Freios ABS");
-				txtFreiosAbs.setBounds(499, 118, 122, 28);
-				panelCadastrarCarro.add(txtFreiosAbs);
-				txtFreiosAbs.setColumns(10);
-
-				txtAirbag = new JTextField();
-				txtAirbag.setText("AIRBAG");
-				txtAirbag.setBounds(499, 174, 122, 28);
-				panelCadastrarCarro.add(txtAirbag);
-				txtAirbag.setColumns(10);
-
-				txtDireoHidrulica = new JTextField();
-				txtDireoHidrulica.setText("Dire\u00E7\u00E3o Hidr\u00E1ulica");
-				txtDireoHidrulica.setBounds(499, 229, 122, 28);
-				panelCadastrarCarro.add(txtDireoHidrulica);
-				txtDireoHidrulica.setColumns(10);
-
-				trocarPanel(panelCadastrarCarro);
-				mostrarPanel();
+				InserirCarroUI inserirCarro = new InserirCarroUI();
+				inserirCarro.setVisible(true);
 			}
 		});
 		mnInserir.add(mntmCarro);
