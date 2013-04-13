@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import principal.Fachada;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -17,7 +20,7 @@ public class PesquisaAlugarCarroUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-
+	private Fachada fachada;
 	/**
 	 * Launch the application.
 	 */
@@ -70,6 +73,7 @@ public class PesquisaAlugarCarroUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//  Verificar se existe o cliente,caso exista, abrir a janela para o cliente escolher o carro.Caso não exista,informar ao funcionário,para que ele venha a cadastrar o cliente.
+				
 			}
 		});
 		btnAvanar.setBounds(212, 122, 89, 23);
@@ -77,7 +81,7 @@ public class PesquisaAlugarCarroUI extends JFrame {
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			 public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
@@ -85,4 +89,11 @@ public class PesquisaAlugarCarroUI extends JFrame {
 		panel.add(btnCancelar);
 	}
 
+	private void pesquisarCliente(){
+		try {
+			fachada.pesquisarCliente(textField.getText());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 }

@@ -4,14 +4,24 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Panel;
 
+import javax.naming.ldap.Rdn;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+
+import dados.carros.Adicionais;
+import dados.carros.Carro;
+import exceptions.BIException;
+import exceptions.CCException;
+
+import principal.Fachada;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -19,14 +29,22 @@ public class InserirCarroUI extends JFrame {
 
 	
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textPlaca;
+	private JTextField textModelo;
+	private JTextField textPorta;
+	private JTextField textPotencia;
+	private JTextField textMarca;
+	private JTextField textCategoria;
+	private Fachada fachada;
 	
-
+	private boolean ar = false;
+	private boolean AIRBAG = false;
+	private boolean direcaoH = false;
+	private boolean som = false;
+	private boolean freiosABS = false;
+	private boolean GPS = false;
+	private boolean travas = false;
+	private JTextField textValor;
 	/**
 	 * Launch the application.
 	 */
@@ -94,72 +112,118 @@ public class InserirCarroUI extends JFrame {
 		lblNewLabel_6.setBounds(447, 97, 84, 27);
 		panel.add(lblNewLabel_6);
 		
-		textField = new JTextField();
-		textField.setBounds(156, 102, 132, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textPlaca = new JTextField();
+		textPlaca.setBounds(156, 102, 132, 20);
+		panel.add(textPlaca);
+		textPlaca.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(156, 162, 132, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		textModelo = new JTextField();
+		textModelo.setBounds(156, 162, 132, 20);
+		panel.add(textModelo);
+		textModelo.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(156, 218, 132, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		textPorta = new JTextField();
+		textPorta.setBounds(156, 218, 132, 20);
+		panel.add(textPorta);
+		textPorta.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(156, 279, 132, 20);
-		panel.add(textField_3);
+		textPotencia = new JTextField();
+		textPotencia.setColumns(10);
+		textPotencia.setBounds(156, 279, 132, 20);
+		panel.add(textPotencia);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(156, 339, 132, 20);
-		panel.add(textField_4);
+		textMarca = new JTextField();
+		textMarca.setColumns(10);
+		textMarca.setBounds(156, 339, 132, 20);
+		panel.add(textMarca);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(541, 102, 132, 20);
-		panel.add(textField_5);
+		textCategoria = new JTextField();
+		textCategoria.setColumns(10);
+		textCategoria.setBounds(541, 102, 132, 20);
+		panel.add(textCategoria);
+		
+		textValor = new JTextField();
+		textValor.setBounds(591, 162, 86, 20);
+		panel.add(textValor);
+		textValor.setColumns(10);
 		
 		JRadioButton rdbtnAr = new JRadioButton("Ar");
+		rdbtnAr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 ar = true;
+			}
+		});
 		rdbtnAr.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnAr.setBounds(447, 159, 109, 23);
+		rdbtnAr.setBounds(447, 215, 109, 23);
 		panel.add(rdbtnAr);
 		
 		JRadioButton rdbtnTravas = new JRadioButton("Travas El\u00E9tricas");
+		rdbtnTravas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				travas = true;
+			}
+		});
 		rdbtnTravas.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnTravas.setBounds(633, 159, 171, 23);
+		rdbtnTravas.setBounds(591, 215, 171, 23);
 		panel.add(rdbtnTravas);
 		
 		JRadioButton rdbtnSom = new JRadioButton("Som");
+		rdbtnSom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				som = true;
+			}
+		});
 		rdbtnSom.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnSom.setBounds(447, 276, 109, 23);
+		rdbtnSom.setBounds(447, 285, 109, 23);
 		panel.add(rdbtnSom);
 		
 		JRadioButton rdbtnAirbag = new JRadioButton("AIRBAG");
+		rdbtnAirbag.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AIRBAG = true;
+			}
+		});
 		rdbtnAirbag.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnAirbag.setBounds(447, 336, 109, 23);
+		rdbtnAirbag.setBounds(447, 320, 109, 23);
 		panel.add(rdbtnAirbag);
 		
 		JRadioButton rdbtnGps = new JRadioButton("GPS");
+		rdbtnGps.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GPS = true;
+			}
+		});
 		rdbtnGps.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnGps.setBounds(447, 215, 109, 23);
+		rdbtnGps.setBounds(447, 250, 109, 23);
 		panel.add(rdbtnGps);
 		
 		JRadioButton rdbtnFreiosAbs = new JRadioButton("Freios ABS");
+		rdbtnFreiosAbs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				freiosABS = true;
+			}
+		});
 		rdbtnFreiosAbs.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnFreiosAbs.setBounds(642, 215, 109, 23);
+		rdbtnFreiosAbs.setBounds(591, 250, 109, 23);
 		panel.add(rdbtnFreiosAbs);
 		
 		JRadioButton rdbtnDireoHidrulica = new JRadioButton("Dire\u00E7\u00E3o Hidr\u00E1ulica");
+		rdbtnDireoHidrulica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				direcaoH = true;
+			}
+		});
 		rdbtnDireoHidrulica.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		rdbtnDireoHidrulica.setBounds(642, 276, 221, 23);
+		rdbtnDireoHidrulica.setBounds(591, 280, 221, 23);
 		panel.add(rdbtnDireoHidrulica);
 		
 		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salvar();
+				dispose();
+			}
+		});
 		btnNewButton.setBounds(529, 428, 89, 23);
 		panel.add(btnNewButton);
 		
@@ -171,5 +235,29 @@ public class InserirCarroUI extends JFrame {
 		});
 		btnNewButton_1.setBounds(662, 428, 89, 23);
 		panel.add(btnNewButton_1);
+		
+		JLabel lblValorDoAluguel = new JLabel("Valor do Aluguel:");
+		lblValorDoAluguel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblValorDoAluguel.setBounds(447, 160, 149, 20);
+		panel.add(lblValorDoAluguel);
+		
+	}
+	
+	private void salvar(){
+		try {
+			String numPorta = textPorta.getText();
+			int porta = Integer.parseInt(numPorta);
+			String aluguel = textValor.getText();
+			System.out.println(aluguel);
+			Adicionais adicionais = new Adicionais(ar, GPS, travas, som, freiosABS, AIRBAG, direcaoH);
+			String placa = textPlaca.getText();
+			Carro carro = new Carro(textPlaca.getText(), porta, textPotencia.getText(), textModelo.getText(), textMarca.getText(), textCategoria.getText(), adicionais, 0.0);
+			fachada.cadastrarCarro(carro);
+			
+			System.out.println(carro.getCategoria()+carro.getModelo());
+		} catch (CCException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 }

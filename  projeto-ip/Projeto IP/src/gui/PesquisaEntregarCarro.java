@@ -4,12 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import exceptions.BIException;
+
+import principal.Fachada;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -17,7 +23,7 @@ public class PesquisaEntregarCarro extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-
+	private Fachada fachada;
 	/**
 	 * Launch the application.
 	 */
@@ -66,6 +72,11 @@ public class PesquisaEntregarCarro extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnAvanar = new JButton("Avan\u00E7ar");
+		btnAvanar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnAvanar.setBounds(215, 122, 89, 23);
 		panel.add(btnAvanar);
 		
@@ -77,6 +88,16 @@ public class PesquisaEntregarCarro extends JFrame {
 		});
 		btnCancelar.setBounds(328, 122, 89, 23);
 		panel.add(btnCancelar);
+	}
+	
+	private void pesquisaCliente(){
+		
+		try {
+			fachada.pesquisarCliente(textField.getText());
+			// Chamar a lista 
+		} catch (BIException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 }

@@ -10,19 +10,26 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import dados.pessoas.Cliente;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class InserirClienteUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textNome;
+	private JTextField textCpf;
+	private JTextField textRG;
+	private JTextField textEmail;
+	private JTextField textCNH;
+	private JTextField textData;
+	private JTextField textEndereço;
 
 	/**
 	 * Launch the application.
@@ -96,42 +103,47 @@ public class InserirClienteUI extends JFrame {
 		lblNewLabel_6.setBounds(493, 290, 83, 20);
 		panel.add(lblNewLabel_6);
 		
-		textField = new JTextField();
-		textField.setBounds(227, 164, 211, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textNome = new JTextField();
+		textNome.setBounds(227, 164, 211, 20);
+		panel.add(textNome);
+		textNome.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(227, 227, 132, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		textCpf = new JTextField();
+		textCpf.setBounds(227, 227, 132, 20);
+		panel.add(textCpf);
+		textCpf.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(227, 292, 102, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		textRG = new JTextField();
+		textRG.setBounds(227, 292, 102, 20);
+		panel.add(textRG);
+		textRG.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(224, 347, 214, 20);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		textEmail = new JTextField();
+		textEmail.setBounds(224, 347, 214, 20);
+		panel.add(textEmail);
+		textEmail.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(549, 164, 155, 20);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		textCNH = new JTextField();
+		textCNH.setBounds(549, 164, 155, 20);
+		panel.add(textCNH);
+		textCNH.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(652, 227, 132, 20);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
+		textData = new JTextField();
+		textData.setBounds(652, 227, 132, 20);
+		panel.add(textData);
+		textData.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(586, 292, 198, 20);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
+		textEndereço = new JTextField();
+		textEndereço.setBounds(586, 292, 198, 20);
+		panel.add(textEndereço);
+		textEndereço.setColumns(10);
 		
 		JButton btnSalvarCliente = new JButton("Salvar");
+		btnSalvarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salvar();
+			}
+		});
 		btnSalvarCliente.setBounds(553, 436, 89, 23);
 		panel.add(btnSalvarCliente);
 		
@@ -143,5 +155,18 @@ public class InserirClienteUI extends JFrame {
 		});
 		btnCancelarCliente.setBounds(673, 436, 89, 23);
 		panel.add(btnCancelarCliente);
+	}
+	
+	private void salvar(){
+		
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date date = new Date(df.parse(textData.getText()).getTime());
+			Cliente cliente = new Cliente(textCNH.getText(), textEmail.getText(), textNome.getText(), textCpf.getText(), textRG.getText(),date , textEndereço.getText());
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
