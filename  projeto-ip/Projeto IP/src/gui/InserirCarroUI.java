@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 public class InserirCarroUI extends JFrame {
 
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -165,7 +166,7 @@ public class InserirCarroUI extends JFrame {
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(662, 428, 89, 23);

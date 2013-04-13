@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,6 +24,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JList;
 
 public class SegundoUI extends JFrame {
 
@@ -84,14 +86,14 @@ public class SegundoUI extends JFrame {
 	 */
 	public SegundoUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 732, 539);
+		setBounds(100, 100, 925, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 716, 21);
+		menuBar.setBounds(0, 0, 908, 21);
 		contentPane.add(menuBar);
 
 		JMenu mnListas = new JMenu("Carros");
@@ -106,12 +108,12 @@ public class SegundoUI extends JFrame {
 				esconderPanel();
 				// mandar um get repositorio,pra ele imprimir as informações dos carros
 				Panel panel = new Panel();
-				panel.setBounds(10, 33, 700, 462);
+				panel.setBounds(10, 33, 925, 539);
 				contentPane.add(panel);
 				panel.setLayout(null);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 694, 462);
+				scrollPane.setBounds(0, 27,899, 355);
 				panel.add(scrollPane);
 
 				Carros = new JTable();
@@ -162,23 +164,23 @@ public class SegundoUI extends JFrame {
 								{null},
 								{null},
 								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
 						},
 						new String[] {
 								"Carros"
 						}
+						
 				));
 				Carros.getColumnModel().getColumn(0).setPreferredWidth(619);
 				scrollPane.setViewportView(Carros);
 				
-				Button button = new Button("Atualizar");
-				button.setBounds(337, 101, 70, 22);
-				panel.add(button);
-
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.setBounds(657, 410, 89, 23);
+				panel.add(btnAtualizar);
+				
+				JButton btnRemover = new JButton("Remover");
+				btnRemover.setBounds(775, 410, 89, 23);
+				panel.add(btnRemover);
+				
 				trocarPanel(panel);
 				mostrarPanel();
 
@@ -194,12 +196,12 @@ public class SegundoUI extends JFrame {
 				// Verificar se já existe uma lista aberta e caso sim,fechar e abrir a desejada.
 				// Mostrar os carros que tem o disponibilidade false
 				Panel panel = new Panel();
-				panel.setBounds(10, 33, 700, 462);
+				panel.setBounds(10, 33, 925, 539);
 				contentPane.add(panel);
 				panel.setLayout(null);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 694, 462);
+				scrollPane.setBounds(0, 27, 899, 355);
 				panel.add(scrollPane);
 
 				CarroIndisponivel = new JTable();
@@ -231,30 +233,7 @@ public class SegundoUI extends JFrame {
 								{null},
 								{null},
 								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
+								
 						},
 						new String[] {
 								"Carros Indisponiveis"
@@ -263,6 +242,14 @@ public class SegundoUI extends JFrame {
 				CarroIndisponivel.getColumnModel().getColumn(0).setPreferredWidth(620);
 				scrollPane.setViewportView(CarroIndisponivel);
 
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.setBounds(657, 410, 89, 23);
+				panel.add(btnAtualizar);
+				
+				JButton btnRemover = new JButton("Remover");
+				btnRemover.setBounds(775, 410, 89, 23);
+				panel.add(btnRemover);
+				
 				trocarPanel(panel);
 				mostrarPanel();
 
@@ -277,39 +264,17 @@ public class SegundoUI extends JFrame {
 				esconderPanel();
 				// Imprimir carros com disponibilidade true
 				Panel panel = new Panel();
-				panel.setBounds(10, 33, 700, 462);
+				panel.setBounds(10, 33, 925, 539);
 				contentPane.add(panel);
 				panel.setLayout(null);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 694, 462);
+				scrollPane.setBounds(0, 27, 899, 355);
 				panel.add(scrollPane);
 
 				CarroDisponivel = new JTable();
 				CarroDisponivel.setModel(new DefaultTableModel(
 						new Object[][] {
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
 								{null},
 								{null},
 								{null},
@@ -346,11 +311,28 @@ public class SegundoUI extends JFrame {
 				CarroDisponivel.getColumnModel().getColumn(0).setPreferredWidth(620);
 				scrollPane.setViewportView(CarroDisponivel);
 
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.setBounds(657, 410, 89, 23);
+				panel.add(btnAtualizar);
+				
+				JButton btnRemover = new JButton("Remover");
+				btnRemover.setBounds(775, 410, 89, 23);
+				panel.add(btnRemover);
+				
 				trocarPanel(panel);
 				mostrarPanel();
 			}
 		});
 		mnListas.add(mntmCarrosDisponveis);
+		
+		JMenuItem mntmInserirCarro = new JMenuItem("Inserir Carro");
+		mntmInserirCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InserirCarroUI inserirCarro = new InserirCarroUI();
+				inserirCarro.setVisible(true);
+			}
+		});
+		mnListas.add(mntmInserirCarro);
 
 		JMenu mnCliente = new JMenu("  Cliente");
 		mnCliente.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -363,39 +345,17 @@ public class SegundoUI extends JFrame {
 				esconderPanel();
 
 				Panel panel = new Panel();
-				panel.setBounds(10, 33, 700, 462);
+				panel.setBounds(10, 33, 925, 539);
 				contentPane.add(panel);
 				panel.setLayout(null);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 694, 462);
+				scrollPane.setBounds(0, 27, 899, 355);
 				panel.add(scrollPane);
 
 				Clientes = new JTable();
 				Clientes.setModel(new DefaultTableModel(
 						new Object[][] {
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
 								{null},
 								{null},
 								{null},
@@ -432,6 +392,14 @@ public class SegundoUI extends JFrame {
 				Clientes.getColumnModel().getColumn(0).setPreferredWidth(619);
 				scrollPane.setViewportView(Clientes);
 
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.setBounds(657, 410, 89, 23);
+				panel.add(btnAtualizar);
+				
+				JButton btnRemover = new JButton("Remover");
+				btnRemover.setBounds(775, 410, 89, 23);
+				panel.add(btnRemover);
+				
 				trocarPanel(panel);
 				mostrarPanel();
 			}
@@ -445,39 +413,17 @@ public class SegundoUI extends JFrame {
 				esconderPanel();
 
 				Panel panel = new Panel();
-				panel.setBounds(10, 33, 700, 462);
+				panel.setBounds(10, 33, 925, 539);
 				contentPane.add(panel);
 				panel.setLayout(null);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 694, 462);
+				scrollPane.setBounds(0, 27, 899, 355);
 				panel.add(scrollPane);
 
 				ClientesAtendimento = new JTable();
 				ClientesAtendimento.setModel(new DefaultTableModel(
 						new Object[][] {
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
 								{null},
 								{null},
 								{null},
@@ -514,12 +460,29 @@ public class SegundoUI extends JFrame {
 				ClientesAtendimento.getColumnModel().getColumn(0).setPreferredWidth(619);
 				scrollPane.setViewportView(ClientesAtendimento);
 
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.setBounds(553, 410, 89, 23);
+				panel.add(btnAtualizar);
+				
+				JButton btnRemover = new JButton("Remover");
+				btnRemover.setBounds(553, 410, 89, 23);
+				panel.add(btnRemover);
+				
 				trocarPanel(panel);
 				mostrarPanel();
 
 			}
 		});
 		mnCliente.add(mntmClientesComCarro);
+		
+		JMenuItem mntmInserirCliente = new JMenuItem("Inserir Cliente");
+		mntmInserirCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InserirClienteUI inserirCliente = new InserirClienteUI();
+				inserirCliente.setVisible(true);
+			}
+		});
+		mnCliente.add(mntmInserirCliente);
 
 		JMenu mnFuncionrio = new JMenu("Funcion\u00E1rio");
 		mnFuncionrio.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -532,39 +495,17 @@ public class SegundoUI extends JFrame {
 				esconderPanel();
 
 				Panel panel = new Panel();
-				panel.setBounds(10, 33, 700, 462);
+				panel.setBounds(10, 33, 925, 539);
 				contentPane.add(panel);
 				panel.setLayout(null);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 694, 462);
+				scrollPane.setBounds(0, 27, 899, 355);
 				panel.add(scrollPane);
 
 				ListaFuncionarios = new JTable();
 				ListaFuncionarios.setModel(new DefaultTableModel(
 						new Object[][] {
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
 								{null},
 								{null},
 								{null},
@@ -601,178 +542,65 @@ public class SegundoUI extends JFrame {
 				ListaFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(619);
 				scrollPane.setViewportView(ListaFuncionarios);
 
+				
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.setBounds(553, 410, 89, 23);
+				panel.add(btnAtualizar);
+				
+				JButton btnRemover = new JButton("Remover");
+				btnRemover.setBounds(775, 410, 89, 23);
+				panel.add(btnRemover);
+				
 				trocarPanel(panel);
 				mostrarPanel();
 
 			}
 		});
 		mnFuncionrio.add(mntmListaDeFuncionrios);
+		
+		JMenuItem mntmInserirFuncionrio = new JMenuItem("Inserir Funcion\u00E1rio");
+		mntmInserirFuncionrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InserirFuncionarioUI inserirFuncionario = new InserirFuncionarioUI();
+				inserirFuncionario.setVisible(true);
+			}
+		});
+		mnFuncionrio.add(mntmInserirFuncionrio);
 
-		JMenu mnInserir = new JMenu("Inserir");
+		JMenu mnInserir = new JMenu("Relat\u00F3rio");
 		mnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		mnInserir.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		mnInserir.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		menuBar.add(mnInserir);
-
-		JMenuItem mntmCarro = new JMenuItem("Carro");
-		mntmCarro.addActionListener(new ActionListener() {
+		
+		JMenu mnMovimentaes = new JMenu("Movimenta\u00E7\u00F5es");
+		mnMovimentaes.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		menuBar.add(mnMovimentaes);
+		
+		JMenuItem mntmAlugarCarro = new JMenuItem("Alugar Carro");
+		mntmAlugarCarro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				InserirCarroUI inserirCarro = new InserirCarroUI();
-				inserirCarro.setVisible(true);
+				
+				PesquisaAlugarCarroUI pesquisarCliente = new PesquisaAlugarCarroUI();
+				pesquisarCliente.setVisible(true);
 			}
 		});
-		mnInserir.add(mntmCarro);
-
-		JMenuItem mntmCliente = new JMenuItem("Cliente");
-		mntmCliente.addActionListener(new ActionListener() {
+		mnMovimentaes.add(mntmAlugarCarro);
+		
+		JMenuItem mntmEntregarCarro = new JMenuItem("Entregar Carro");
+		mntmEntregarCarro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				esconderPanel();
-				// Criando Painel Cadastro Cliente
-
-				Panel panelCadastroCliente = new Panel();
-				panelCadastroCliente.setBounds(0, 27, 706, 464);
-				contentPane.add(panelCadastroCliente);
-				panelCadastroCliente.setLayout(null);
-
-				txtNome = new JTextField();
-				txtNome.setBounds(59, 108, 122, 28);
-				txtNome.setText("Nome ");
-				panelCadastroCliente.add(txtNome);
-				txtNome.setColumns(10);
-
-				txtCpf = new JTextField();
-				txtCpf.setBounds(59, 173, 122, 28);
-				txtCpf.setText("CPF");
-				panelCadastroCliente.add(txtCpf);
-				txtCpf.setColumns(10);
-
-				txtRg = new JTextField();
-				txtRg.setBounds(59, 241, 122, 28);
-				txtRg.setText("RG");
-				panelCadastroCliente.add(txtRg);
-				txtRg.setColumns(10);
-
-				txtDataDeNascimento = new JTextField();
-				txtDataDeNascimento.setBounds(59, 299, 133, 28);
-				txtDataDeNascimento.setText("Data de Nascimento");
-				panelCadastroCliente.add(txtDataDeNascimento);
-				txtDataDeNascimento.setColumns(10);
-
-				txtEmail = new JTextField();
-				txtEmail.setBounds(320, 108, 295, 28);
-				txtEmail.setText("Email");
-				panelCadastroCliente.add(txtEmail);
-				txtEmail.setColumns(10);
-
-				txtCnh = new JTextField();
-				txtCnh.setBounds(320, 173, 122, 28);
-				txtCnh.setText("CNH");
-				panelCadastroCliente.add(txtCnh);
-				txtCnh.setColumns(10);
-
-				txtEndereo = new JTextField();
-				txtEndereo.setBounds(320, 241, 122, 28);
-				txtEndereo.setText("Endere\u00E7o");
-				panelCadastroCliente.add(txtEndereo);
-				txtEndereo.setColumns(10);
-
-				JLabel lblCadastroCliente = new JLabel("Cadastro Cliente");
-				lblCadastroCliente.setBounds(222, 25, 226, 43);
-				lblCadastroCliente.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-				panelCadastroCliente.add(lblCadastroCliente);
-
-
-
-				textField = new JTextField();
-				textField.setBounds(59, 108, 122, 28);
-				panelCadastroCliente.add(textField);
-				textField.setColumns(10);
-
-				trocarPanel(panelCadastroCliente);
-				mostrarPanel();
-
+				
+				PesquisaEntregarCarro entregarCarro = new PesquisaEntregarCarro();
+				entregarCarro.setVisible(true);
 			}
 		});
-		mnInserir.add(mntmCliente);
-
-		JMenuItem mntmFuncionrio = new JMenuItem("Funcion\u00E1rio");
-		mntmFuncionrio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				esconderPanel();
-				// Criando o painel Cadastrar Funcionário
-
-				Panel panelCadastrarFuncionario = new Panel();
-				panelCadastrarFuncionario.setBounds(0, 27, 706, 464);
-				contentPane.add(panelCadastrarFuncionario);
-				panelCadastrarFuncionario.setLayout(null);
-
-				JLabel lblCadastrarFuncionrio = new JLabel("Cadastrar Funcion\u00E1rio");
-				lblCadastrarFuncionrio.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-				lblCadastrarFuncionrio.setBounds(222, 25, 250, 43);
-				panelCadastrarFuncionario.add(lblCadastrarFuncionrio);
-
-				txtNome_1 = new JTextField();
-				txtNome_1.setText("Nome");
-				txtNome_1.setBounds(91, 127, 176, 28);
-				panelCadastrarFuncionario.add(txtNome_1);
-				txtNome_1.setColumns(10);
-
-				txtCpf_1 = new JTextField();
-				txtCpf_1.setText("CPF");
-				txtCpf_1.setBounds(91, 197, 159, 28);
-				panelCadastrarFuncionario.add(txtCpf_1);
-				txtCpf_1.setColumns(10);
-
-				txtRg_1 = new JTextField();
-				txtRg_1.setText("RG");
-				txtRg_1.setBounds(91, 264, 122, 28);
-				panelCadastrarFuncionario.add(txtRg_1);
-				txtRg_1.setColumns(10);
-
-				txtDataDeNascimento_1 = new JTextField();
-				txtDataDeNascimento_1.setText("Data de Nascimento");
-				txtDataDeNascimento_1.setBounds(91, 332, 137, 28);
-				panelCadastrarFuncionario.add(txtDataDeNascimento_1);
-				txtDataDeNascimento_1.setColumns(10);
-
-				txtEndereo_1 = new JTextField();
-				txtEndereo_1.setText("Endere\u00E7o");
-				txtEndereo_1.setBounds(394, 332, 244, 28);
-				panelCadastrarFuncionario.add(txtEndereo_1);
-				txtEndereo_1.setColumns(10);
-
-				txtCtps = new JTextField();
-				txtCtps.setText("CTPS");
-				txtCtps.setBounds(394, 127, 159, 28);
-				panelCadastrarFuncionario.add(txtCtps);
-				txtCtps.setColumns(10);
-
-				txtLogin = new JTextField();
-				txtLogin.setText("Login");
-				txtLogin.setBounds(394, 197, 122, 28);
-				panelCadastrarFuncionario.add(txtLogin);
-				txtLogin.setColumns(10);
-
-				txtSenha = new JTextField();
-				txtSenha.setText("Senha");
-				txtSenha.setBounds(394, 264, 122, 28);
-				panelCadastrarFuncionario.add(txtSenha);
-				txtSenha.setColumns(10);
-
-				trocarPanel(panelCadastrarFuncionario);
-				mostrarPanel();
-
-			}
-		});
-		mnInserir.add(mntmFuncionrio);
+		mnMovimentaes.add(mntmEntregarCarro);
 
 		Panel panel_1 = new Panel();
-		panel_1.setBounds(0, 27, 716, 474);
+		panel_1.setBounds(0, 27, 908, 474);
 		contentPane.add(panel_1);
 		this.panel = panel_1;
 		panel_1.setLayout(null);
@@ -810,6 +638,4 @@ public class SegundoUI extends JFrame {
 	private void trocarPanel(Panel panel){
 		this.panel = panel;
 	}
-
-
 }
