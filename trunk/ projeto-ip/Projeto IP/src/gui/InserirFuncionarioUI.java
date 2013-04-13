@@ -4,26 +4,38 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import dados.pessoas.Atendente;
+import dados.pessoas.Funcionario;
+import exceptions.BIException;
+import exceptions.FCException;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class InserirFuncionarioUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField textNome;
+	private JTextField textCpf;
+	private JTextField textRG;
+	private JTextField textLogin;
+	private JTextField textSenha;
+	private JTextField textEndereco;
+	private JTextField textData;
+	private JTextField textCTPS;
+	private JTextField textSalario;
 
 	/**
 	 * Launch the application.
@@ -102,49 +114,55 @@ public class InserirFuncionarioUI extends JFrame {
 		lblEndereco.setBounds(428, 286, 102, 20);
 		panel.add(lblEndereco);
 		
-		textField = new JTextField();
-		textField.setBounds(188, 160, 176, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textNome = new JTextField();
+		textNome.setBounds(188, 160, 176, 20);
+		panel.add(textNome);
+		textNome.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(188, 221, 139, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		textCpf = new JTextField();
+		textCpf.setBounds(188, 221, 139, 20);
+		panel.add(textCpf);
+		textCpf.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(188, 283, 139, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		textRG = new JTextField();
+		textRG.setBounds(188, 283, 139, 20);
+		panel.add(textRG);
+		textRG.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(498, 160, 128, 20);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		textLogin = new JTextField();
+		textLogin.setBounds(498, 160, 128, 20);
+		panel.add(textLogin);
+		textLogin.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(498, 221, 128, 20);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		textSenha = new JTextField();
+		textSenha.setBounds(498, 221, 128, 20);
+		panel.add(textSenha);
+		textSenha.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(508, 288, 248, 20);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
+		textEndereco = new JTextField();
+		textEndereco.setBounds(508, 288, 248, 20);
+		panel.add(textEndereco);
+		textEndereco.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(580, 355, 164, 20);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
+		textData = new JTextField();
+		textData.setBounds(580, 355, 164, 20);
+		panel.add(textData);
+		textData.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(188, 355, 139, 20);
-		panel.add(textField_7);
-		textField_7.setColumns(10);
+		textCTPS = new JTextField();
+		textCTPS.setBounds(188, 355, 139, 20);
+		panel.add(textCTPS);
+		textCTPS.setColumns(10);
+		
+		textSalario = new JTextField();
+		textSalario.setBounds(201, 418, 89, 20);
+		panel.add(textSalario);
+		textSalario.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				salvar();
 			}
 		});
 		btnSalvar.setBounds(553, 436, 89, 23);
@@ -158,6 +176,26 @@ public class InserirFuncionarioUI extends JFrame {
 		});
 		btnCancelar.setBounds(685, 436, 89, 23);
 		panel.add(btnCancelar);
+		
+		JLabel lblSalrio = new JLabel("Sal\u00E1rio:");
+		lblSalrio.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblSalrio.setBounds(132, 412, 89, 28);
+		panel.add(lblSalrio);
 	}
-
+	
+	private void salvar(){
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				Date date = new Date(df.parse(textData.getText()).getTime());
+				String palavra = textData.getText();
+				double salario = Double.parseDouble(textSalario.getText());
+				Atendente atendente = new Atendente(textNome.getText(), textCpf.getText(), textRG.getText(), date, textEndereco.getText(), textCTPS.getText(), textLogin.getText(), textSenha.getText(), salario);
+				JOptionPane.showMessageDialog(this, "Funcionário Inserido com sucesso!");
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+	}
 }

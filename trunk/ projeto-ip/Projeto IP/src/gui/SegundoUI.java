@@ -456,16 +456,17 @@ public class SegundoUI extends JFrame {
 						new String[] {
 								"Clientes em atendimento"
 						}
+						
 				));
 				ClientesAtendimento.getColumnModel().getColumn(0).setPreferredWidth(619);
 				scrollPane.setViewportView(ClientesAtendimento);
 
 				JButton btnAtualizar = new JButton("Atualizar");
-				btnAtualizar.setBounds(553, 410, 89, 23);
+				btnAtualizar.setBounds(657, 410, 89, 23);
 				panel.add(btnAtualizar);
 				
 				JButton btnRemover = new JButton("Remover");
-				btnRemover.setBounds(553, 410, 89, 23);
+				btnRemover.setBounds(775, 410, 89, 23);
 				panel.add(btnRemover);
 				
 				trocarPanel(panel);
@@ -505,35 +506,9 @@ public class SegundoUI extends JFrame {
 
 				ListaFuncionarios = new JTable();
 				ListaFuncionarios.setModel(new DefaultTableModel(
+						
 						new Object[][] {
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
-								{null},
+								
 						},
 						new String[] {
 								"Funcionários"
@@ -544,7 +519,7 @@ public class SegundoUI extends JFrame {
 
 				
 				JButton btnAtualizar = new JButton("Atualizar");
-				btnAtualizar.setBounds(553, 410, 89, 23);
+				btnAtualizar.setBounds(657, 410, 89, 23);
 				panel.add(btnAtualizar);
 				
 				JButton btnRemover = new JButton("Remover");
@@ -637,5 +612,9 @@ public class SegundoUI extends JFrame {
 
 	private void trocarPanel(Panel panel){
 		this.panel = panel;
+	}
+	
+	private void atualizar(){
+		
 	}
 }

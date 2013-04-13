@@ -27,7 +27,7 @@ public class UI extends JFrame {
 	private JPanel contentPane;
 	private JTextField textLogin;
 	private JPasswordField textSenha;
-	private Fachada fachada;
+	public  static Fachada fachada;
 	private JTextField textCpf;
 	/**
 	 * Launch the application.
@@ -121,14 +121,14 @@ public class UI extends JFrame {
 		
 		try {
 			
-			boolean cadastro = fachada.verificarLogin(textLogin.getText(),textSenha.toString(),textCpf.getText());
-			if(cadastro){
+			//boolean cadastro = fachada.verificarLogin(textLogin.getText(),textSenha.toString(),textCpf.getText());
+			//if(cadastro){
 			SegundoUI ui2 = new SegundoUI();
 			ui2.setVisible(true);
 			dispose();
-			}
+			//}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Busca Inexistente!");
+			JOptionPane.showMessageDialog(this, "Funcionário Inexistente!");
 		}
 	}
 	
