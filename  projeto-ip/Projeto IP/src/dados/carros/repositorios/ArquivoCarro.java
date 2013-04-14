@@ -20,7 +20,7 @@ import dados.carros.Carro;
 import dados.pessoas.Cliente;
 import exceptions.BIException;
 
-public class RepositorioCarroArquivo implements IRepositorioCarro{
+public class ArquivoCarro implements IRepositorioCarro{
 
 	private FileOutputStream fos;
 	private FileInputStream fis;
@@ -28,7 +28,7 @@ public class RepositorioCarroArquivo implements IRepositorioCarro{
 	private Workbook wb;
 
 	// TODO: Fazer checagem se o arquivo ja existe para poder persistir
-	public RepositorioCarroArquivo(){
+	public ArquivoCarro(){
 
 		if(!new File("RepositorioCarro.xls").exists()){
 			// cria planilha
