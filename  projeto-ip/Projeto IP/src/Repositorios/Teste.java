@@ -2,6 +2,7 @@ package Repositorios;
 
 
 import java.util.Date;
+import interfaces.Iterator;
 
 import dados.carros.*;
 import dados.carros.repositorios.*;
@@ -21,14 +22,13 @@ public class Teste {
 		System.out.print(data.toLocaleString());
 		Atendente func = new Atendente("msad", "dsad54", "874564",data , "asdasd", "marcio", "mmcj", "23244", 500.00);
 			
+		ListaCarros repositorio = new ListaCarros(null);
+		repositorio.inserirCarro(carro);
+		repositorio.inserirCarro(carro2);		
+		repositorio.inserirCarro(carro3);
 		
-		RepositorioCarroArquivo repositorio = new RepositorioCarroArquivo();
-		//repositorio.inserirCarro(carro);
-	//	repositorio.inserirCarro(carro2);
-		repositorio.removerCarro("adasd");
-		RepositorioFuncionarioArquivo rep = new RepositorioFuncionarioArquivo();
-		rep.inserirFuncionario(func);
-		//repositorio.inserirCarro(carro3);
+		Iterator carros = repositorio.iterator();
+		Carro c =(Carro) carros.next();
 	}
 	}
 

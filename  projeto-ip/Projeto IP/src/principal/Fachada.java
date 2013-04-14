@@ -22,7 +22,7 @@ public class Fachada {
 
 	public void carregarRepositorios() throws FileNotFoundException, IOException,
 	BDEException {
-		File arquivo = new File("bat.txt");
+		File arquivo = new File("config.txt");
 		try {
 			FileReader reader = new FileReader(arquivo);
 			BufferedReader buffered = new BufferedReader(reader);

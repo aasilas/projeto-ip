@@ -81,7 +81,7 @@ public class ArrayCarros implements IRepositorioCarro, Iterator<Carro>{
 	}
 
 	@Override
-	public Iterator<Carro> iterator() {
+	public Iterator iterator() {
 		return this;
 	}
 	
