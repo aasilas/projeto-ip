@@ -24,6 +24,7 @@ import principal.Fachada;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 
 public class InserirCarroUI extends JFrame {
 
@@ -48,6 +49,17 @@ public class InserirCarroUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	// Valores inseridos nos Jtext
+	private int porta;
+	private String potencia;
+	private String modelo;
+	private String marca;
+	private String categoria;
+	private Adicionais adicionais;
+	private double valor;
+	private String placa;
+	private boolean disponibilidade;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -113,36 +125,72 @@ public class InserirCarroUI extends JFrame {
 		panel.add(lblNewLabel_6);
 		
 		textPlaca = new JTextField();
+		textPlaca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				verificarPlaca();
+				}
+		});
 		textPlaca.setBounds(156, 102, 132, 20);
 		panel.add(textPlaca);
 		textPlaca.setColumns(10);
 		
 		textModelo = new JTextField();
+		textModelo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modelo = textModelo.getText();
+			}
+		});
 		textModelo.setBounds(156, 162, 132, 20);
 		panel.add(textModelo);
 		textModelo.setColumns(10);
 		
 		textPorta = new JTextField();
+		textPorta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				verificarPorta();
+				
+			}
+		});
 		textPorta.setBounds(156, 218, 132, 20);
 		panel.add(textPorta);
 		textPorta.setColumns(10);
 		
 		textPotencia = new JTextField();
+		textPotencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				potencia = textPotencia.getText();
+			}
+		});
 		textPotencia.setColumns(10);
 		textPotencia.setBounds(156, 279, 132, 20);
 		panel.add(textPotencia);
 		
 		textMarca = new JTextField();
+		textMarca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				marca = textMarca.getText();
+			}
+		});
 		textMarca.setColumns(10);
 		textMarca.setBounds(156, 339, 132, 20);
 		panel.add(textMarca);
 		
 		textCategoria = new JTextField();
+		textCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				categoria = textCategoria.getText();
+			}
+		});
 		textCategoria.setColumns(10);
 		textCategoria.setBounds(541, 102, 132, 20);
 		panel.add(textCategoria);
 		
 		textValor = new JTextField();
+		textValor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				verificarValor();
+			}
+		});
 		textValor.setBounds(591, 162, 86, 20);
 		panel.add(textValor);
 		textValor.setColumns(10);
@@ -245,19 +293,60 @@ public class InserirCarroUI extends JFrame {
 	
 	private void salvar(){
 		try {
-			String numPorta = textPorta.getText();
-			int porta = Integer.parseInt(numPorta);
-			String aluguel = textValor.getText();
-			System.out.println(aluguel);
-			Adicionais adicionais = new Adicionais(ar, GPS, travas, som, freiosABS, AIRBAG, direcaoH);
-			String placa = textPlaca.getText();
-			Carro carro = new Carro(textPlaca.getText(), porta, textPotencia.getText(), textModelo.getText(), textMarca.getText(), textCategoria.getText(), adicionais, 0.0);
-			fachada.cadastrarCarro(carro);
 			
-			System.out.println(carro.getCategoria()+carro.getModelo());
+			Adicionais adicionais = new Adicionais(ar, GPS, travas, som, freiosABS, AIRBAG, direcaoH);
+			
+			Carro carro = new Carro(placa, porta, potencia, modelo, marca, categoria, adicionais, valor);
+			fachada.cadastrarCarro(carro);
 		} catch (CCException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage());
+			JOptionPane.showMessageDialog(this, "Algum dos valores estão incorretos!");
 			e.printStackTrace();
 		}
 	}
+	
+	private void verificarPlaca(){
+		// Verificar se o carro já existe atrevés da placa,e caso não exista:  placa = textPlaca 
+		boolean achou = false;
+		String textoPlaca = textPlaca.getText();
+		try {
+			 fachada.pesquisarCarro(textoPlaca);
+			
+		} catch (BIException e1) {
+			placa = textoPlaca;
+			achou = true;
+		}finally{
+			if (achou) {
+				JOptionPane.showMessageDialog(null, "Carro já Cadastrado!");
+				
+			}
+			
+		}
+	}
+	
+	private void verificarPorta(){
+		String textoPorta = textPorta.getText();
+		try {
+			int numPorta = Integer.parseInt(textoPorta);
+			if(numPorta > 0 || numPorta < 5){
+				porta = numPorta;
+			}else{
+				JOptionPane.showMessageDialog(null,"Válor Inválido!");
+
+			}
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(null,"Válor Inválido!");
+		}
+	}
+	
+	private void verificarValor(){
+		try {
+			String textoValor = textValor.getText();
+			double valorAluguel = Double.parseDouble(textoValor);
+			valor = valorAluguel;
+			
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(null, "Válor Inválido!");
+		}
+	}
 }
+

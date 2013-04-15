@@ -12,9 +12,12 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import principal.Fachada;
+
 import dados.pessoas.Atendente;
 import dados.pessoas.Funcionario;
 import exceptions.BIException;
+import exceptions.CCException;
 import exceptions.FCException;
 
 import java.awt.event.ActionListener;
@@ -36,7 +39,7 @@ public class InserirFuncionarioUI extends JFrame {
 	private JTextField textData;
 	private JTextField textCTPS;
 	private JTextField textSalario;
-
+	private Fachada fachada;
 	/**
 	 * Launch the application.
 	 */
@@ -56,6 +59,15 @@ public class InserirFuncionarioUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	private String nome;
+	private String cpf;
+	private String rg;
+	private Date data;
+	private String endereco;
+	private String ctps;
+	private String login;
+	private String senha;
+	private double salario;
 	public InserirFuncionarioUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 925, 539);
@@ -84,9 +96,9 @@ public class InserirFuncionarioUI extends JFrame {
 		lblCPF.setBounds(132, 222, 46, 14);
 		panel.add(lblCPF);
 		
-		JLabel lblNascimento = new JLabel("Data de Nascimento:");
+		JLabel lblNascimento = new JLabel("Data de Nascimento(//):");
 		lblNascimento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		lblNascimento.setBounds(428, 353, 152, 20);
+		lblNascimento.setBounds(428, 353, 172, 20);
 		panel.add(lblNascimento);
 		
 		JLabel lblRG = new JLabel("RG:");
@@ -115,46 +127,110 @@ public class InserirFuncionarioUI extends JFrame {
 		panel.add(lblEndereco);
 		
 		textNome = new JTextField();
+		textNome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nome = textNome.getText();
+			}
+		});
 		textNome.setBounds(188, 160, 176, 20);
 		panel.add(textNome);
 		textNome.setColumns(10);
 		
 		textCpf = new JTextField();
+		textCpf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		textCpf.setBounds(188, 221, 139, 20);
 		panel.add(textCpf);
 		textCpf.setColumns(10);
 		
 		textRG = new JTextField();
+		textRG.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rg = textRG.getText();
+			}
+		});
 		textRG.setBounds(188, 283, 139, 20);
 		panel.add(textRG);
 		textRG.setColumns(10);
 		
 		textLogin = new JTextField();
+		textLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				login = textLogin.getText();
+			}
+		});
 		textLogin.setBounds(498, 160, 128, 20);
 		panel.add(textLogin);
 		textLogin.setColumns(10);
 		
 		textSenha = new JTextField();
+		textSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				senha = textLogin.getText();
+			}
+		});
 		textSenha.setBounds(498, 221, 128, 20);
 		panel.add(textSenha);
 		textSenha.setColumns(10);
 		
 		textEndereco = new JTextField();
+		textEndereco.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				endereco = textEndereco.getText();
+			}
+		});
 		textEndereco.setBounds(508, 288, 248, 20);
 		panel.add(textEndereco);
 		textEndereco.setColumns(10);
 		
 		textData = new JTextField();
-		textData.setBounds(580, 355, 164, 20);
+		textData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String textoData = textData.getText();
+				if(textoData.length() == 0){
+					JOptionPane.showConfirmDialog(null, "Insira a Data de Nascimento!");
+				}else if(textoData.length() > 0 && textoData.length() < 11){
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					try {
+						data = new Date(df.parse(textoData).getTime());
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
+				}else{
+					JOptionPane.showMessageDialog(null, "Data Inválida!");
+				}
+			}
+		});
+		textData.setBounds(610, 355, 164, 20);
 		panel.add(textData);
 		textData.setColumns(10);
 		
 		textCTPS = new JTextField();
+		textCTPS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctps = textCTPS.getText();
+			}
+		});
 		textCTPS.setBounds(188, 355, 139, 20);
 		panel.add(textCTPS);
 		textCTPS.setColumns(10);
 		
 		textSalario = new JTextField();
+		textSalario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String textoSalario = textSalario.getText();
+					double valorAluguel = Double.parseDouble(textoSalario);
+					salario = valorAluguel;
+					
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Válor Inválido!");
+				}
+			}
+		});
 		textSalario.setBounds(201, 418, 89, 20);
 		panel.add(textSalario);
 		textSalario.setColumns(10);
@@ -184,18 +260,29 @@ public class InserirFuncionarioUI extends JFrame {
 	}
 	
 	private void salvar(){
-			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-			try {
-				Date date = new Date(df.parse(textData.getText()).getTime());
-				String palavra = textData.getText();
-				double salario = Double.parseDouble(textSalario.getText());
-				Atendente atendente = new Atendente(textNome.getText(), textCpf.getText(), textRG.getText(), date, textEndereco.getText(), textCTPS.getText(), textLogin.getText(), textSenha.getText(), salario);
-				JOptionPane.showMessageDialog(this, "Funcionário Inserido com sucesso!");
-				
-				
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
+		Funcionario atendente = new Atendente(nome, cpf, rg, data, endereco, ctps, login, senha, salario); 
+		try {
+			fachada.cadastrarFuncionario(atendente);
+		} catch (CCException e) {
+			e.printStackTrace();
+		}
+		//  Problema,pois aqui o q vou inserir é um funcionário,mas funcionario é abstract,logo impossivel :)
 	}
+	
+	private void verificarCpf() {
+		String textoCpf = textCpf.getText();
+		boolean achou = false;
+		try {
+			fachada.pesquisarCliente(textoCpf);
+			
+		} catch (BIException e2) {
+			cpf = textoCpf;
+			achou = true;
+		}finally{
+			if(achou){
+				JOptionPane.showMessageDialog(null, "Cliente já Cadastrado!");
+			}
+		}
+	}
+	
 }

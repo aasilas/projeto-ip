@@ -4,14 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.xml.crypto.Data;
 
+import principal.Fachada;
+
+import dados.carros.Carro;
 import dados.pessoas.Cliente;
+import exceptions.BIException;
+import exceptions.CCException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,10 +37,20 @@ public class InserirClienteUI extends JFrame {
 	private JTextField textCNH;
 	private JTextField textData;
 	private JTextField textEndereço;
+	private Fachada fachada;
 
 	/**
 	 * Launch the application.
 	 */
+	private String CPF;
+	private String CNH;
+	private String email;
+	private String nome;
+	private String rg;
+	private Date data;
+	private String endereco;
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -93,9 +110,9 @@ public class InserirClienteUI extends JFrame {
 		lblNewLabel_4.setBounds(493, 165, 46, 14);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Data de Nascimento:");
+		JLabel lblNewLabel_5 = new JLabel("Data de Nascimento(//):");
 		lblNewLabel_5.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(493, 223, 149, 25);
+		lblNewLabel_5.setBounds(493, 223, 171, 25);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Endere\u00E7o:");
@@ -104,36 +121,100 @@ public class InserirClienteUI extends JFrame {
 		panel.add(lblNewLabel_6);
 		
 		textNome = new JTextField();
+		textNome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					nome = textNome.getText();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Nome Inválido!");
+				}
+			}
+		});
 		textNome.setBounds(227, 164, 211, 20);
 		panel.add(textNome);
 		textNome.setColumns(10);
 		
 		textCpf = new JTextField();
+		textCpf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				verificarCpf();
+			}
+		});
 		textCpf.setBounds(227, 227, 132, 20);
 		panel.add(textCpf);
 		textCpf.setColumns(10);
 		
 		textRG = new JTextField();
+		textRG.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rg = textRG.getText();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "RG Inválido!");
+				}
+			}
+		});
 		textRG.setBounds(227, 292, 102, 20);
 		panel.add(textRG);
 		textRG.setColumns(10);
 		
 		textEmail = new JTextField();
+		textEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					email = textEmail.getText();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Email Inválido!");
+				}
+			}
+		});
 		textEmail.setBounds(224, 347, 214, 20);
 		panel.add(textEmail);
 		textEmail.setColumns(10);
 		
 		textCNH = new JTextField();
+		textCNH.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					CNH = textCNH.getText();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "CNH Inválida!");
+				}
+			}
+		});
 		textCNH.setBounds(549, 164, 155, 20);
 		panel.add(textCNH);
 		textCNH.setColumns(10);
 		
 		textData = new JTextField();
-		textData.setBounds(652, 227, 132, 20);
+		textData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String textoData = textData.getText();
+				if(textoData.length() == 0){
+					JOptionPane.showConfirmDialog(null, "Insira a Data de Nascimento!");
+				}else if(textoData.length() > 0 && textoData.length() < 11){
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					try {
+						data = new Date(df.parse(textoData).getTime());
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
+				}else{
+					JOptionPane.showMessageDialog(null, "Data Inválida!");
+				}
+			}
+		});
+		textData.setBounds(674, 227, 132, 20);
 		panel.add(textData);
 		textData.setColumns(10);
 		
 		textEndereço = new JTextField();
+		textEndereço.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				endereco = textEndereço.getText();
+			}
+		});
 		textEndereço.setBounds(586, 292, 198, 20);
 		panel.add(textEndereço);
 		textEndereço.setColumns(10);
@@ -159,14 +240,27 @@ public class InserirClienteUI extends JFrame {
 	
 	private void salvar(){
 		
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Cliente cliente = new Cliente(CNH, email, nome, CPF, rg, data, endereco);	
 		try {
-			Date date = new Date(df.parse(textData.getText()).getTime());
-			Cliente cliente = new Cliente(textCNH.getText(), textEmail.getText(), textNome.getText(), textCpf.getText(), textRG.getText(),date , textEndereço.getText());
-
-		} catch (ParseException e) {
+			fachada.cadastrarCliente(cliente);
+		} catch (CCException e) {
 			e.printStackTrace();
 		}
-		
 	}
+	private void verificarCpf() {
+		String textoCpf = textCpf.getText();
+		boolean achou = false;
+		try {
+			fachada.pesquisarCliente(textoCpf);
+			
+		} catch (BIException e2) {
+			CPF = textoCpf;
+			achou = true;
+		}finally{
+			if(achou){
+				JOptionPane.showMessageDialog(null, "Cliente já Cadastrado!");
+			}
+		}
+	}
+	
 }

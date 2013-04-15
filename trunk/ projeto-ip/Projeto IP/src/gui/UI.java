@@ -60,12 +60,6 @@ public class UI extends JFrame {
 		contentPane.setLayout(null);
 		
 		textLogin = new JTextField();
-		textLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-			}
-		});
 		textLogin.setBounds(218, 77, 122, 30);
 		contentPane.add(textLogin);
 		textLogin.setColumns(10);
@@ -119,7 +113,7 @@ public class UI extends JFrame {
 	private void verificarConta() {
 		
 		
-		try {
+		//try {
 			
 			//boolean cadastro = fachada.verificarLogin(textLogin.getText(),textSenha.toString(),textCpf.getText());
 			//if(cadastro){
@@ -127,9 +121,9 @@ public class UI extends JFrame {
 			ui2.setVisible(true);
 			dispose();
 			//}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Funcionário Inexistente!");
-		}
+		//} catch (Exception e) {
+		//	JOptionPane.showMessageDialog(this, "Funcionário Inexistente!");
+		//}
 	}
 	
 	}
