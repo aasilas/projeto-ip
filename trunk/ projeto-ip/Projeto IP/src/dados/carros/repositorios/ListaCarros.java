@@ -6,7 +6,7 @@ import dados.carros.Carro;
 import exceptions.BIException;
 import exceptions.IIException;
 
-public class ListaCarros implements IRepositorioCarro, Iterator<Carro> {
+public class ListaCarros implements IRepositorioCarro{
 
 	private Carro carro;
 	private ListaCarros proximo;
@@ -72,21 +72,8 @@ public class ListaCarros implements IRepositorioCarro, Iterator<Carro> {
 		return carroProcurado;
 	}
 
-	@Override
-	public Iterator<Carro> iterator() {
+	public Iterator iterator() {
 		return new ListaCarrosIterator().iterator();
-	}
-	
-	@Override
-	public Carro next() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	private class ListaCarrosIterator implements  Iterator<Carro> {

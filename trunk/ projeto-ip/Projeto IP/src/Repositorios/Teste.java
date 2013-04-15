@@ -2,11 +2,13 @@ package Repositorios;
 
 
 import java.util.Date;
+
+import interfaces.IRepositorioCarro;
 import interfaces.Iterator;
 
 import dados.carros.*;
 import dados.carros.repositorios.*;
-import dados.funcionarios.repositorios.RepositorioFuncionarioArquivo;
+import dados.funcionarios.repositorios.ArquivoFuncionarios;
 import dados.pessoas.Atendente;
 import dados.pessoas.Funcionario;
 public class Teste {
@@ -22,7 +24,7 @@ public class Teste {
 		System.out.print(data.toLocaleString());
 		Atendente func = new Atendente("msad", "dsad54", "874564",data , "asdasd", "marcio", "mmcj", "23244", 500.00);
 			
-		ListaCarros repositorio = new ListaCarros(null);
+		IRepositorioCarro repositorio = new ArquivoCarro();
 		repositorio.inserirCarro(carro);
 		repositorio.inserirCarro(carro2);		
 		repositorio.inserirCarro(carro3);

@@ -5,12 +5,14 @@ import exceptions.BIException;
 import exceptions.IIException;
 
 public interface IRepositorioCliente {
-	
-	public void inserirCliente(Cliente cliente);
-	
-	public void removerCliente(String cpf) throws IIException;
-	
-	public void atualizar(Cliente cliente);
-	
-	public Cliente pesquisarCliente(String cpf) throws BIException;
+
+	void inserirCliente(Cliente cliente);
+
+	void removerCliente(String cpf) throws IIException;
+
+	void atualizar(Cliente cliente);
+
+	Cliente pesquisarCliente(String cpf) throws BIException;
+
+	Iterator iterator();
 }
