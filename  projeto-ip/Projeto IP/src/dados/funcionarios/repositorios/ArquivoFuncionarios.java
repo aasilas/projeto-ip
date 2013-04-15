@@ -37,8 +37,9 @@ public class ArquivoFuncionarios implements IRepositorioFuncionario, Iterator{
 			sheetExcel = wb.createSheet();
 			Row row = sheetExcel.createRow(0);
 
-			String array[] = {"Nome"," CPF"," ctps "," RG "," Data de nascimento "," Endereco ","login","senha"};
+			String array[] = {"Nome"," CPF"," ctps "," RG "," Data de nascimento "," Endereco ","login","senha","salario"};
 			for (int i = 0; i < array.length; i++) {
+				
 				Cell cell = row.createCell(i);
 				cell.setCellValue(array[i]);
 			}
@@ -49,7 +50,7 @@ public class ArquivoFuncionarios implements IRepositorioFuncionario, Iterator{
 				wb.write(fos);
 				fos.close();	
 
-
+                                                                                                                    
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -165,9 +166,11 @@ public Funcionario pesquisarFuncionario(String cpf) throws BIException {
 	return null;
 }
 private Funcionario createFuncionario(Row posicao){
-	return new Atendente(posicao.getCell(6).getStringCellValue(), posicao.getCell(2).getStringCellValue(), 
-			posicao.getCell(0).getStringCellValue(), posicao.getCell(1).getStringCellValue(), posicao.getCell(3).getStringCellValue(), 
-			new Date(posicao.getCell(4).getStringCellValue()), posicao.getCell(5).getStringCellValue());
+	Date d =  new Date(posicao.getCell(4).getStringCellValue());
+	return new Atendente(posicao.getCell(0).getStringCellValue(), posicao.getCell(1).getStringCellValue(), 
+			posicao.getCell(3).getStringCellValue(),d, posicao.getCell(5).getStringCellValue(), 
+			posicao.getCell(2).getStringCellValue(), posicao.getCell(6).getStringCellValue(), posicao.getCell(7).getStringCellValue(),
+			(double)posicao.getCell(8).getNumericCellValue());
 }
 
 private void createRow(Row row, Funcionario funcionario){
@@ -202,17 +205,20 @@ private void createRow(Row row, Funcionario funcionario){
 		}else if(palavraBase.contains("login")){
 			cellInserir.setCellValue(funcionario.getLogin());
 
-		}else{
+		}else if(palavraBase.contains("senha")){
 			cellInserir.setCellValue(funcionario.getSenha());// definir se a senha ficará na planilha  ou não
+		}
+		else if(palavraBase.contains("salario")){
+			cellInserir.setCellValue(funcionario.getSalarioBase());// definir se a senha ficará na planilha  ou não
 		}
 	}
 }
 
 @Override
-public Carro next() {
+public Funcionario next() {
 	count++;
 	Row posicao = wb.getSheetAt(0).getRow(this.count - 1);
-	return createFuncionario(posicao);
+	return                                                                                                                                                      createFuncionario(posicao);
 }
 
 @Override
