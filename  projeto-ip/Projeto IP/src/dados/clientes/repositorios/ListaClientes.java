@@ -1,6 +1,8 @@
 package dados.clientes.repositorios;
 
 import interfaces.IRepositorioCliente;
+import interfaces.Iterator;
+import dados.carros.Carro;
 import dados.pessoas.Cliente;
 import exceptions.*;
 
@@ -76,6 +78,40 @@ public class ListaClientes implements IRepositorioCliente{
 		}
 	
 		return clienteProcurado;
+	}
+	
+	public Iterator iterator() {
+		return new ListaClientesIterator().iterator();
+	}
+	
+	private class ListaClientesIterator implements  Iterator<Cliente> {
+		Cliente atual = cliente;
+
+		@Override
+		public Cliente next() {
+			if(hasNext()){
+				Cliente aux = atual;
+				atual = proximo.cliente;
+				return aux;
+			}
+			else{
+				 throw new java.util.NoSuchElementException("error next element iterator ");
+			}
+		}
+
+		@Override
+		public boolean hasNext() {
+			if(atual != null)
+				return true;
+			else
+				return false;
+		}
+
+		@Override
+		public Iterator<Cliente> iterator() {
+			return this;
+		}
+
 	}
 
 }

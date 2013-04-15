@@ -1,6 +1,7 @@
 package dados.funcionarios.repositorios;
 
 import interfaces.IRepositorioFuncionario;
+import interfaces.Iterator;
 import dados.pessoas.Funcionario;
 import exceptions.BIException;
 import exceptions.IIException;
@@ -77,5 +78,37 @@ public class ListaFuncionarios implements IRepositorioFuncionario{
 		return funcionarioProcurado;
 	}
 
+	public Iterator iterator() {
+		return new ListaFuncionariosIterator().iterator();
+	}
+	
+	private class ListaFuncionariosIterator implements  Iterator<Funcionario> {
+		Funcionario atual = funcionario;
 
+		@Override
+		public Funcionario next() {
+			if(hasNext()){
+				Funcionario aux = atual;
+				atual = proximo.funcionario;
+				return aux;
+			}
+			else{
+				 throw new java.util.NoSuchElementException("error next element iterator ");
+			}
+		}
+
+		@Override
+		public boolean hasNext() {
+			if(atual != null)
+				return true;
+			else
+				return false;
+		}
+
+		@Override
+		public Iterator<Funcionario> iterator() {
+			return this;
+		}
+
+	}
 }

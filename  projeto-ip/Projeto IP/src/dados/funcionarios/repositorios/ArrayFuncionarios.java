@@ -1,13 +1,16 @@
 package dados.funcionarios.repositorios;
 
 import interfaces.IRepositorioFuncionario;
+import interfaces.Iterator;
+import dados.carros.Carro;
 import dados.pessoas.Funcionario;
 import exceptions.BIException;
 import exceptions.IIException;
 
-public class ArrayFuncionarios implements IRepositorioFuncionario{
+public class ArrayFuncionarios implements IRepositorioFuncionario, Iterator<Funcionario>{
 
 	private Funcionario[] arrayFuncionarios;
+	private int count = 0;
 	
 	public ArrayFuncionarios (){
 		this.arrayFuncionarios = new Funcionario[0];
@@ -65,6 +68,26 @@ public class ArrayFuncionarios implements IRepositorioFuncionario{
 			throw new BIException();
 		}
 		return tempFuncionario;
+	}
+
+	@Override
+	public Funcionario next() {
+		count++;
+		return arrayFuncionarios[count -1];
+	}
+
+	@Override
+	public boolean hasNext() {
+		if(count < arrayFuncionarios.length)
+			return true;
+		else
+			return false;
+		
+	}
+
+	@Override
+	public Iterator<Funcionario> iterator() {
+		return this;
 	}
 
 }

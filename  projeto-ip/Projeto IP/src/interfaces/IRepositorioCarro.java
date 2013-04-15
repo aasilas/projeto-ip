@@ -8,12 +8,14 @@ import exceptions.IIException;
 
 public interface IRepositorioCarro {
 
-	public void inserirCarro(Carro carro);
+	 void inserirCarro(Carro carro);
 
-	public void removerCarro(String placa) throws IIException;
+	 void removerCarro(String placa) throws IIException;
 
-	public void atualizar(Carro carro);
+	 void atualizar(Carro carro);
 
-	public Carro pesquisarCarro(String placa) throws BIException;
+	 Carro pesquisarCarro(String placa) throws BIException;
+	 
+	 Iterator iterator();
 	
 }
