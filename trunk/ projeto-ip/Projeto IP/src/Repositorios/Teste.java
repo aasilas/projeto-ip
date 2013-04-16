@@ -3,6 +3,10 @@ package Repositorios;
 
 import java.util.Date;
 
+import principal.Fachada;
+import relatorios.ObjetoBase;
+import relatorios.RelatorioMensal;
+
 import interfaces.IRepositorioCarro;
 import interfaces.Iterator;
 
@@ -31,6 +35,18 @@ public class Teste {
 		
 		Iterator carros = repositorio.iterator();
 		Carro c =(Carro) carros.next();
+		
+		Fachada fachada = new Fachada();
+		RelatorioMensal relatorio = new RelatorioMensal();
+		relatorio.inserirDados(new ObjetoBase(1,100.00,600.00,"janeiro"));
+		relatorio.inserirDados(new ObjetoBase(1,100.00,600.00,"fevereiro"));
+		fachada.serializaRelatorio(relatorio);
+		RelatorioMensal relatorio1 = new RelatorioMensal();
+		relatorio1 = fachada.deserializaRelatorio();
+		while (relatorio1.hasNext()) {
+			System.out.print(relatorio1.next().toString());
+		}
+		
 	}
 	}
 

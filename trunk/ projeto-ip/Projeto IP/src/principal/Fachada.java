@@ -3,6 +3,8 @@ package principal;
 import java.io.*;
 import java.util.Date;
 
+import relatorios.RelatorioMensal;
+
 import negocios.*;
 import dados.carros.repositorios.*;
 import dados.clientes.repositorios.*;
@@ -19,6 +21,8 @@ public class Fachada {
 	private ControleCarros controleCarros;
 	private ControleClientes controleClientes;
 	private ControleFuncionarios controlefuncionarios;
+	private final static String titulo = "Relatorios.ip";
+	private RelatorioMensal relatorio;
 
 	public Fachada(){
 		try {
@@ -185,11 +189,50 @@ public class Fachada {
 		}
 	}
 	
-
 	public boolean verificarLogin(String login, String senha, String cpf){
 		return controlefuncionarios.verificarLogin(login, senha, cpf);
 	}
 	
-	
+	public void serializaRelatorio(RelatorioMensal relatorio) {
+		FileOutputStream arq = null;
+		ObjectOutputStream out = null;
+		try {
+			arq = new FileOutputStream(titulo);
+			out = new ObjectOutputStream(arq);
+			out.writeObject(relatorio);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				arq.close();
+				out.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
 
+	public RelatorioMensal deserializaRelatorio() {
+		FileInputStream arqLeitura = null;
+		ObjectInputStream in = null;
+		RelatorioMensal relatorio = null;
+		try {
+			arqLeitura = new FileInputStream(titulo);
+			in = new ObjectInputStream(arqLeitura);
+			relatorio = (RelatorioMensal) in.readObject();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				arqLeitura.close();
+				in.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	 
+		return relatorio;
+	}
 }
