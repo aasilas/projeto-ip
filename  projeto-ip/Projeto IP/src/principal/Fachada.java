@@ -20,6 +20,21 @@ public class Fachada {
 	private ControleClientes controleClientes;
 	private ControleFuncionarios controlefuncionarios;
 
+	public Fachada(){
+		try {
+			carregarRepositorios();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BDEException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void carregarRepositorios() throws FileNotFoundException, IOException,
 	BDEException {
 		File arquivo = new File("config.txt");
