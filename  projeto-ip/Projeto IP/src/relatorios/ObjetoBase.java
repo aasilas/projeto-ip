@@ -1,15 +1,17 @@
 package relatorios;
 
-public class ObjetoBase {
+public class ObjetoBase implements java.io.Serializable{
 	private int carrosAlugados;
 	private	double totalVendas;
 	private double lucro;
+	private String mes;
 	
-	public ObjetoBase(int carrosAlugados, double totalVendas, double lucro) {
+	public ObjetoBase(int carrosAlugados, double totalVendas, double lucro, String mes) {
 		super();
 		this.carrosAlugados = carrosAlugados;
 		this.totalVendas = totalVendas;
 		this.lucro = lucro;
+		this.mes= mes;
 	}
 	
 	public int getCarrosAlugados() {
@@ -34,8 +36,16 @@ public class ObjetoBase {
 
 	@Override
 	public String toString() {
-		return "carrosAlugados = " + carrosAlugados
-				+ ", totalVendas = " + totalVendas + ", lucro = " + lucro;
+		return "\n Mês : " +this.mes + "\n carrosAlugados = " + this.carrosAlugados
+				+ ", totalVendas = " + this.totalVendas + "R$, lucro = " + this.lucro +"R$";
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
 	}
 	
 	
