@@ -2,7 +2,6 @@ package gui;
 
 
 
-import guiTabelas.TabelaCarro;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -122,15 +121,9 @@ public class SegundoUI extends JFrame {
 		JMenuItem mntmCarrosDaloja = new JMenuItem("Carros da loja");
 		mntmCarrosDaloja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-
 				// mandar um get repositorio,pra ele imprimir as informações dos carros
-				TabelaCarro tabela = new TabelaCarro();
-				tabela.setVisible(true);
-				
-				
-				
-
+				//TabelaCarro tabela = new TabelaCarro();
+				//tabela.setVisible(true);
 			}
 		});
 		mnListas.add(mntmCarrosDaloja);

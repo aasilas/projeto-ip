@@ -3,6 +3,7 @@ package principal;
 import java.io.*;
 import java.util.Date;
 
+import relatorios.ObjetoBase;
 import relatorios.RelatorioMensal;
 
 import negocios.*;
@@ -108,6 +109,8 @@ public class Fachada {
 	public void alugarCarro(String placa, Date entrega, Date saida)throws BIException {
 		try {
 			controleCarros.alugarCarro(placa, entrega, saida);
+			double valor = this.pesquisarCarro(placa).getValor(); 
+			relatorio.inserirDados(new ObjetoBase(1,valor, valor,"março"));
 		} catch (BIException ex) {
 			throw new BIException();
 		}
