@@ -50,6 +50,8 @@ public class AtualizarCarroUI extends JFrame {
 	private double valor;
 	private int porta;
 	private Carro carro;
+	private boolean achou = false;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -90,8 +92,7 @@ public class AtualizarCarroUI extends JFrame {
 				try {
 				String placa = textPlaca.getText();
 				fachada.pesquisarCarro(placa);
-				Adicionais adicionais= new Adicionais(ar, gps, travasEletricas, som, freioABS, airbag, dirHidraulica);
-				carro = new Carro(placa, porta, textPorta.getText(), textModelo.getText(), textMarca.getText(), textCategoria.getText(), adicionais, valor);
+				achou = true;
 				
 				} catch (BIException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -227,7 +228,13 @@ public class AtualizarCarroUI extends JFrame {
 		JButton btnSalvar = new JButton("Atualizar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				fachada.atualizarCarro(carro);
+				if (achou) {
+					Adicionais adicionais= new Adicionais(ar, gps, travasEletricas, som, freioABS, airbag, dirHidraulica);
+					carro = new Carro(textPlaca.getText(), porta, textPorta.getText(), textModelo.getText(), textMarca.getText(), textCategoria.getText(), adicionais, valor);
+					fachada.atualizarCarro(carro);
+					}else{
+						JOptionPane.showMessageDialog(null, "Carro Inexistente!");
+					}
 			}
 		});
 		btnSalvar.setBounds(351, 241, 89, 23);
