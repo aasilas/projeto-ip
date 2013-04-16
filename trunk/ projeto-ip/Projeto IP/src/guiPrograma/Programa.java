@@ -33,21 +33,7 @@ public class Programa {
 		} catch (CCException e) {
 			e.printStackTrace();
 		}
-		
-		fachada.atualizarCarro(carro);
-		fachada.entregarCarro(carro.getPlaca());
-		fachada.alugarCarro(carro.getPlaca(), new Date(12/05/2013), new Date(01/05/2013));
-		fachada.pesquisarCarro(carro.getPlaca());
-		try {
-			fachada.removerCarro(carro.getPlaca());
-		} catch (IIException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		// Carro Testado
-		
+				
 		try {
 			fachada.cadastrarCliente(cliente);
 		} catch (CCException e) {
@@ -56,13 +42,13 @@ public class Programa {
 		
 		fachada.atualizarCliente(cliente);
 		fachada.pesquisarCliente(clienteAtualizar.getCpf());
-		try {
-			fachada.removerCliente(clienteAtualizar.getCpf());
-		} catch (IIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		
+
+		fachada.atualizarCarro(carro);
+		fachada.alugarCarro(carro.getPlaca(), new Date(12/05/2013), new Date(01/05/2013));
+		fachada.entregarCarro(carro.getPlaca());
+		fachada.pesquisarCarro(carro.getPlaca());
 		
 		try {
 			fachada.cadastrarFuncionario(funcionario);
@@ -73,6 +59,19 @@ public class Programa {
 		
 		fachada.atualizarFuncionario(funcAtualizar);
 		fachada.pesquisarFuncionario(funcAtualizar.getCpf());
+		
+		try {
+			fachada.removerCarro(carro.getPlaca());
+		} catch (IIException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fachada.removerCliente(clienteAtualizar.getCpf());
+		} catch (IIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			fachada.removerFuncionario(funcAtualizar.getCpf());
 		} catch (IIException e) {
