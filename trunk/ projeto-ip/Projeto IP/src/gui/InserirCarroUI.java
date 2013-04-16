@@ -36,7 +36,7 @@ public class InserirCarroUI extends JFrame {
 	private JTextField textPotencia;
 	private JTextField textMarca;
 	private JTextField textCategoria;
-	private Fachada fachada;
+	private static Fachada fachada;
 	
 	private boolean ar = false;
 	private boolean AIRBAG = false;
@@ -66,6 +66,7 @@ public class InserirCarroUI extends JFrame {
 				try {
 					InserirCarroUI frame = new InserirCarroUI();
 					frame.setVisible(true);
+					fachada = new Fachada();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -268,8 +269,8 @@ public class InserirCarroUI extends JFrame {
 		JButton btnNewButton = new JButton("Salvar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				salvar();
-				dispose();
+				verificação();
+				
 			}
 		});
 		btnNewButton.setBounds(529, 428, 89, 23);
@@ -347,6 +348,15 @@ public class InserirCarroUI extends JFrame {
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, "Válor Inválido!");
 		}
+	}
+	
+	private void verificação(){
+		 if((textPorta.getText() == null) || (potencia == null) || (marca == null) || (categoria == null) || (textValor.getText() == null)){
+			 JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+		 }else{
+			 salvar();
+				dispose();
+		 }
 	}
 }
 

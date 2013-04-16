@@ -240,9 +240,11 @@ public class InserirClienteUI extends JFrame {
 	
 	private void salvar(){
 		
-		Cliente cliente = new Cliente(CNH, email, nome, CPF, rg, data, endereco);	
+		//Cliente cliente = new Cliente(CNH, email, nome, CPF, rg, data, endereco);
+		Cliente cliente = new Cliente("wdowdkdw", "cskcs", "wddw", "90309393180", "wdókwdo", new Date(), "endereco");
 		try {
-			fachada.cadastrarCliente(cliente);
+			SegundoUI.fachada.cadastrarCliente(cliente);
+			cliente.getCarro();
 		} catch (CCException e) {
 			e.printStackTrace();
 		}
