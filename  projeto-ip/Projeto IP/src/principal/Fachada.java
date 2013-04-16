@@ -28,14 +28,19 @@ public class Fachada {
 		try {
 			carregarRepositorios();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (BDEException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//TODO exibir exceção de erro de leitura do config.txt
+			this.controleCarros = new ControleCarros(new ArquivoCarro());
+			this.controleClientes = new ControleClientes(new ArquivoCliente());
+			this.controlefuncionarios = new ControleFuncionarios(new ArquivoFuncionarios());
+		}
+		try {
+			this.relatorio = this.deserializaRelatorio();
+		}  catch (Exception e) {
+			this.relatorio = new RelatorioMensal();
 		}
 	}
 	
@@ -50,14 +55,14 @@ public class Fachada {
 				this.controleCarros = new ControleCarros(new ArrayCarros());
 				this.controleClientes = new ControleClientes(new ArrayClientes());
 				this.controlefuncionarios = new ControleFuncionarios(new ArrayFuncionarios());
-			} else if (linha.equalsIgnoreCase(tipoRepo.TAD.name())) {
-				this.controleCarros = new ControleCarros(new ArrayCarros());
-				this.controleClientes = new ControleClientes(new ArrayClientes());
-				this.controlefuncionarios = new ControleFuncionarios(new ArrayFuncionarios());
 			} else if (linha.equalsIgnoreCase(tipoRepo.ARQUIVO.name())) {
-				this.controleCarros = new ControleCarros(new ArrayCarros());
-				this.controleClientes = new ControleClientes(new ArrayClientes());
-				this.controlefuncionarios = new ControleFuncionarios(new ArrayFuncionarios());
+				this.controleCarros = new ControleCarros(new ArquivoCarro());
+				this.controleClientes = new ControleClientes(new ArquivoCliente());
+				this.controlefuncionarios = new ControleFuncionarios(new ArquivoFuncionarios());
+			} else if (linha.equalsIgnoreCase(tipoRepo.TAD.name())) {
+				this.controleCarros = new ControleCarros(new ListaCarros(null));
+				this.controleClientes = new ControleClientes(new ListaClientes(null));
+				this.controlefuncionarios = new ControleFuncionarios(new ListaFuncionarios(null));
 			} else {
 				throw new BDEException();
 			}
@@ -67,7 +72,6 @@ public class Fachada {
 			throw new IOException();
 		}
 	}
-
 
 	public void cadastrarCarro(Carro carro) throws CCException{
 		try{
@@ -117,8 +121,6 @@ public class Fachada {
 		}
 	}
 	
-
-	
 	public void cadastrarCliente(Cliente cliente) throws CCException{
 		try {
 			controleClientes.cadastrarCliente(cliente);
@@ -147,8 +149,6 @@ public class Fachada {
 	public void atualizarCliente(Cliente cliente){
 		controleClientes.atualizarCliente(cliente);
 	}
-	
-
 	
 	public void cadastrarFuncionario(Funcionario funcionario) throws CCException{
 		try{
@@ -179,7 +179,6 @@ public class Fachada {
 	public void atualizarFuncionario(Funcionario funcionario){
 		controlefuncionarios.atualizarFuncionario(funcionario);
 	}
-	
 	
 	public void modificarSenha(String senhaAntiga, String senhaNova, String  cpf) throws BIException, SIException{
 		try{
